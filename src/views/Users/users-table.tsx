@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { User } from 'typescript/user';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
+import DialogEditAndAddUser from '@components/template/CustomDialog/dialog.edit.add';
 import { TablePaper } from './styles';
 
 interface Column {
@@ -47,16 +47,26 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
   };
 
   const handleOnSaveUser = async (data: User) => {
-    const id = `${users.length + 1}`;
+    console.log(data);
 
-    const userObj = {
-      ...data,
-      id,
-    };
+    const userFound = users.findIndex((user: User) => user.id === data.id);
 
-    const newArray = [...users, userObj];
+    if (userFound >= 0) {
+      const user = users[userFound];
+      const newArray = [...users];
 
-    return true;
+      newArray[userFound] = {
+        ...user,
+      };
+
+      // TODO UPDATE THE TABLE USERS
+      // onUpdateUser()
+
+      setEditData(null);
+
+      return true;
+    }
+    return false;
   };
 
   const cancelCustomDialog = () => {
@@ -67,7 +77,7 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
     <TablePaper>
       <TableContainer
         sx={{
-          height: '65vh',
+          height: '54vh',
           overflowY: 'auto',
           width: '100%',
         }}

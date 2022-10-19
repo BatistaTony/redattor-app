@@ -12,7 +12,6 @@ export const CustomDialog = styled(Dialog)`
     align-items: center;
     padding: 28px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    /* position: relative; */
 
     p {
       font-family: 'Roboto';
@@ -150,9 +149,29 @@ export const FormContainer = styled.div`
   .MuiFormControl-root {
     width: 100%;
     height: 41px;
+    position: relative;
+
+    .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+      padding: 0;
+    }
+
+    input {
+      height: 41px;
+      width: 100%;
+
+      &:focus {
+        background: transparent;
+      }
+    }
 
     .MuiOutlinedInput-notchedOutline {
       border: 1px solid rgba(139, 141, 146, 0.2);
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      letter-spacing: 0.06em;
     }
 
     .MuiInputBase-input {

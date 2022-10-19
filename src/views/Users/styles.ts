@@ -5,11 +5,9 @@ export default {};
 
 export const UsersManagementContainer = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #e7e7fe;
-  padding: 50px;
+  padding-top: 33px;
 `;
 
 export const UsersManagementHeader = styled.div`

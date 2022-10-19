@@ -1,17 +1,17 @@
-import { OutlinedInput, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import Button from '@mui/material/Button';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Head from 'next/head';
-import { CustomDialog } from '@components/template/CustomDialogs/styles';
-import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
+import DialogEditAndAddUser from '@components/template/CustomDialog/dialog.edit.add';
 import { User } from 'typescript/user';
 import { STATUS, PROFILES } from '@utils/user';
+import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -113,7 +113,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
 
     const newArray = [...users, userObj];
 
-    // setUsers(newArray);
+    setUsers(newArray);
 
     return true;
   };
@@ -125,6 +125,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
   return (
     <UsersManagementContainer>
       <Head>
+        <title>{title}</title>
         <link
           href="http://fonts.googleapis.com/css?family=Roboto"
           rel="stylesheet"
@@ -179,6 +180,12 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
             onChange={handleChange}
             name="profile"
             placeholder="Tipo de perfil"
+            displayEmpty
+            renderValue={
+              filter.profile === ''
+                ? () => <CustomPlaceholder>Tipo de perfil</CustomPlaceholder>
+                : undefined
+            }
           >
             {PROFILES.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
@@ -194,6 +201,12 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
             name="status"
             onChange={handleChange}
             placeholder="Status"
+            displayEmpty
+            renderValue={
+              filter.status === ''
+                ? () => <CustomPlaceholder>Status</CustomPlaceholder>
+                : undefined
+            }
           >
             {STATUS.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
