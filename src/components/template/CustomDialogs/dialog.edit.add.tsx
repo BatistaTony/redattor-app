@@ -122,9 +122,15 @@ const DialogEditAndAddUser: React.FC<DialogEditAndAddProductProps> = ({
             {changeType === 'add' && userData.picture === '' && (
               <PersonOutlinedIcon />
             )}
+
+            {changeType === 'add' && userData.picture && (
+              <img className="img-avatar-edit" src={userData.picture} alt="" />
+            )}
+
             {changeType === 'edit' && userData.picture && (
               <img className="img-avatar-edit" src={userData.picture} alt="" />
             )}
+
             {changeType === 'edit' && userData.picture === '' && (
               <PersonOutlinedIcon />
             )}
