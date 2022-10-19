@@ -1,94 +1,49 @@
-import React, { useState, useCallback } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+import React, { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
-import Logo from './components/logoWrapper';
-import { appBarData, Drawer } from './utils';
-import CircleButton from './components/makeManuLargeButtton';
+import { pathTitles } from '@utils/paths';
+import colors from '@utils/colors';
+import AvatarWrapper from './avatarWrapper';
 
-export default function MiniDrawer() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(0);
+const AppBar = () => {
+  const router = useRouter();
+  const [currentPash, setCurrentPath] = useState<string>();
 
-  const route = useRouter();
-
-  const toggleDrawer = useCallback(() => {
-    setOpen(!open);
-  }, [open]);
-
-  const handleManuItem = (index: number, path: string) => {
-    if (index === appBarData.length - 1) {
-      return;
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (router?.query?.id) {
+      setCurrentPath(router.query.id[0]);
+    } else if (router?.query) {
+      setCurrentPath(`dashboard`);
     }
-    setSelected(index);
-    route.push(`/home/${path}`);
-  };
+  }, [router]);
 
   return (
-    <div style={{ display: 'flex', position: 'relative' }}>
-      <Drawer variant="permanent" open={open}>
-        <Logo menuIsOpen={open} />
-        <List>
-          {appBarData.map(({ text, icon, path }, index) => (
-            <ListItem
-              key={text}
-              disablePadding
-              sx={{ display: 'block', marginBottom: '5px' }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  background: index === selected ? '#6A6CF620' : '#fff',
-                  margin: '0 16px',
-                  borderRadius: 2,
-                }}
-                onClick={() => {
-                  handleManuItem(index, path);
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {icon({ color: index === selected ? '#6A6CF6' : '#7A7D82' })}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={{
-                    opacity: open ? 1 : 0,
-                    fontSize: 10,
-                    color: index === selected ? '#6A6CF6' : '#7A7D82',
-                  }}
-                />
-              </ListItemButton>
+    <Box
+      style={{
+        width: '100%',
+        height: '60px',
+        borderRadius: 6,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        boxShadow: `0 0 8 ${colors.suberBlack}05`,
+      }}
+      sx={{
+        backgroundColor: ` ${colors.white}`,
+        padding: '0 30px',
+      }}
+    >
+      <Typography variant="subtitle2" fontSize={14} color={colors.light}>
+        {currentPash && pathTitles[currentPash]}
+      </Typography>
 
-              {index === selected && (
-                <div
-                  style={{
-                    width: '10px',
-                    background: '#6A6CF6',
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 1,
-                    right: -5,
-                    borderRadius: 8,
-                  }}
-                />
-              )}
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-
-      <CircleButton toggleDrawer={toggleDrawer} isOpen={open} />
-    </div>
+      <AvatarWrapper />
+    </Box>
   );
-}
+};
+
+export default AppBar;

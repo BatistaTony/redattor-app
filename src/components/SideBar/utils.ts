@@ -11,17 +11,17 @@ import {
 } from 'assets/icons';
 
 export const appBarData = [
-  { text: 'Dashboard', icon: IconHome, path: '/dashboard' },
-  { text: 'Relatorios', icon: IconReport, path: '/relatorios' },
-  { text: 'Layouts da Pagina', icon: IconLayout, path: '/layouts' },
-  { text: 'Utilizadores', icon: IconUsers, path: '/utilizadores' },
+  { text: 'Dashboard', icon: IconHome, path: 'dashboard' },
+  { text: 'Relatorios', icon: IconReport, path: 'relatorios' },
+  { text: 'Layouts da Pagina', icon: IconLayout, path: 'layouts' },
+  { text: 'Utilizadores', icon: IconUsers, path: 'utilizadores' },
   {
     text: 'Registro de alteracoes',
     icon: IconSort,
-    path: '/registro-de-alteracoes',
+    path: 'registro-de-alteracoes',
   },
-  { text: 'Definicoes', icon: IconSettings, path: '/definicoes' },
-  { text: 'Sair', icon: IconLogout, path: '/dashboard' },
+  { text: 'Definicoes', icon: IconSettings, path: 'definicoes' },
+  { text: 'Sair', icon: IconLogout, path: 'null' },
 ];
 
 const drawerWidth = 280;
