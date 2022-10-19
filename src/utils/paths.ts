@@ -1,11 +1,11 @@
-export const paths = [
-  'dashboard',
-  'relatorios',
-  'layouts',
-  'utilizadores',
-  'registro-de-alteracoes',
-  'definicoes',
-];
+export const paths = {
+  DASHBOARD: 'dashboard',
+  REPORTS: 'relatorios',
+  LAYOUT: 'layouts',
+  USERS: 'utilizadores',
+  CHANGE_RECORD: 'registro-de-alteracoes',
+  SETTINGS: 'definicoes',
+};
 
 export const pathTitles = {
   dashboard: 'Dashboard',

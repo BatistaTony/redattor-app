@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Box from '@mui/material/Box';
-import AppBar from '@components/AppBar';
+import AppBar from '@components/molecules/AppBar';
 import colors from '@utils/colors';
 
 const Content: FC<{ children: ReactNode }> = ({ children }) => (

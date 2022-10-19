@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import MiniDrawer from '@components/SideBar';
-import Content from '@components/Content';
+import MiniDrawer from '@components/molecules/SideBar';
+import Content from '@components/molecules/Content';
 import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
@@ -41,8 +41,6 @@ const Home = () => {
     );
   }
 
-  const selectedContent = SectionsContent[currentPash];
-
   return (
     <div
       style={{
@@ -56,7 +54,11 @@ const Home = () => {
       <MiniDrawer />
 
       <Content>
-        {currentPash && selectedContent({ title: pathTitles[currentPash] })}
+        {currentPash &&
+          SectionsContent({
+            path: currentPash,
+            title: pathTitles[currentPash],
+          })}
       </Content>
     </div>
   );
