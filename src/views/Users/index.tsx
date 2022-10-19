@@ -10,6 +10,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Head from 'next/head';
 import { CustomDialog } from '@components/template/CustomDialogs/styles';
 import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
+import { User } from 'typescript/user';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -34,11 +35,76 @@ const names = [
 ];
 
 const UserManagement = () => {
+  const [users, setUsers] = useState<User[]>([
+    {
+      picture: '',
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'test10',
+      phone: '+244941551087',
+      profile: 'Administrador',
+      status: 'Activo',
+    },
+    {
+      picture: '',
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'test15',
+      phone: '+244941551087',
+      profile: 'Validador',
+      status: 'Activo',
+    },
+    {
+      picture: '',
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'test12',
+      phone: '+244941551087',
+      profile: 'Validador',
+      status: 'Activo',
+    },
+    {
+      picture: '',
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'test11',
+      phone: '+244941551087',
+      profile: 'Colunista',
+      status: 'Activo',
+    },
+    {
+      picture: '',
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'test1054',
+      phone: '+244941551087',
+      profile: 'Administrador',
+      status: 'Activo',
+    },
+    {
+      picture: '',
+
+      email: 'batista@email.com',
+      firstName: 'Batista Oliveira',
+      lastName: '',
+      id: 'te4354st15',
+      phone: '+244941551087',
+      profile: 'Validador',
+      status: 'Activo',
+    },
+  ]);
   const [filter, setFilter] = useState({
     search: '',
     status: '',
     profile: '',
   });
+
+  const [showUserDialog, setShowUserDialog] = useState(false);
 
   const handleChange = (event: SelectChangeEvent | ChangeEvent) => {
     const { target } = event;
@@ -47,6 +113,25 @@ const UserManagement = () => {
       ...filter,
       [target.name]: (target as HTMLInputElement).value,
     });
+  };
+
+  const handleOnSaveUser = async (data: User) => {
+    const id = `${users.length + 1}`;
+
+    const userObj = {
+      ...data,
+      id,
+    };
+
+    const newArray = [...users, userObj];
+
+    setUsers(newArray);
+
+    return true;
+  };
+
+  const cancelCustomDialog = () => {
+    setShowUserDialog(false);
   };
 
   return (
@@ -132,19 +217,22 @@ const UserManagement = () => {
         <Button
           sx={{ textTransform: 'none' }}
           startIcon={<PersonAddIcon />}
+          onClick={() => setShowUserDialog(true)}
           variant="contained"
         >
           Novo utilizador
         </Button>
       </UsersManagementFilter>
-      {/* <ModalChangeUser /> */}
-      <DialogEditAndAddUser
-        changeType="add"
-        openModal
-        cancel={() => null}
-        handleOnSave={() => null}
-      />
-      <UsersTable />
+      {showUserDialog && (
+        <DialogEditAndAddUser
+          changeType="add"
+          data={undefined}
+          openModal={showUserDialog}
+          cancel={cancelCustomDialog}
+          handleOnSave={handleOnSaveUser}
+        />
+      )}
+      <UsersTable users={users} />
     </UsersManagementContainer>
   );
 };

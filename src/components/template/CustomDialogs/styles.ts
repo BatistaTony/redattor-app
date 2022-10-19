@@ -100,6 +100,13 @@ export const CustomDialog = styled(Dialog)`
       justify-content: center;
       background: rgba(201, 201, 201, 0.15);
       margin-right: 32px;
+
+      .img-avatar-edit {
+        object-fit: cover;
+        width: 54px;
+        height: 54px;
+        border-radius: 100%;
+      }
     }
 
     .drop-zone {
@@ -111,8 +118,7 @@ export const CustomDialog = styled(Dialog)`
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      border: none;
-      outline: none;
+      cursor: pointer;
 
       p {
         font-family: 'Roboto';

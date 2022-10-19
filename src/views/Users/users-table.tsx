@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { User } from 'typescript/user';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
 import { TablePaper } from './styles';
 
 interface Column {
@@ -19,67 +20,22 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Nome', minWidth: 200 },
+  { id: 'firstName', label: 'Nome', minWidth: 200 },
   { id: 'profile', label: 'Perfil', minWidth: 100 },
   { id: 'email', label: 'Email', minWidth: 200 },
   { id: 'phone', label: 'Telefone', minWidth: 170 },
   { id: 'status', label: 'Status', minWidth: 80 },
 ];
 
-const UsersTable: FC = () => {
+interface UsersTableProps {
+  users: User[];
+}
+
+const UsersTable: FC<UsersTableProps> = ({ users }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
-  const [rows, setRows] = useState<User[]>([
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'test10',
-      phone: '+244941551087',
-      profile: 'Administrador',
-      status: 'Activo',
-    },
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'test15',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'test12',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'test11',
-      phone: '+244941551087',
-      profile: 'Colunista',
-      status: 'Activo',
-    },
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'test1054',
-      phone: '+244941551087',
-      profile: 'Administrador',
-      status: 'Activo',
-    },
-    {
-      email: 'batista@email.com',
-      name: 'Batista Oliveira',
-      id: 'te4354st15',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-  ]);
   const [total, setTotal] = useState<number>(0);
+  const [editData, setEditData] = useState<User | null>(null);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -88,6 +44,23 @@ const UsersTable: FC = () => {
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleOnSaveUser = async (data: User) => {
+    const id = `${users.length + 1}`;
+
+    const userObj = {
+      ...data,
+      id,
+    };
+
+    const newArray = [...users, userObj];
+
+    return true;
+  };
+
+  const cancelCustomDialog = () => {
+    setEditData(null);
   };
 
   return (
@@ -114,11 +87,11 @@ const UsersTable: FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row: User) => (
+            {users.map((row: User) => (
               <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                 {columns.map((column: Column) => {
-                  const value = row[column.id as any];
-                  return column.id === 'name' ? (
+                  const value = row[column.id as keyof User];
+                  return column.id === 'firstName' ? (
                     <TableCell key={column.id}>
                       <div className="user-name">
                         <img
@@ -135,7 +108,11 @@ const UsersTable: FC = () => {
                   );
                 })}
                 <TableCell>
-                  <button className="btn-edit" type="button">
+                  <button
+                    className="btn-edit"
+                    onClick={() => setEditData(row)}
+                    type="button"
+                  >
                     <ModeEditOutlineOutlinedIcon />
                   </button>
                 </TableCell>
@@ -144,6 +121,15 @@ const UsersTable: FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      {editData !== null && (
+        <DialogEditAndAddUser
+          changeType="edit"
+          data={editData}
+          openModal={editData !== null}
+          cancel={cancelCustomDialog}
+          handleOnSave={handleOnSaveUser}
+        />
+      )}
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
