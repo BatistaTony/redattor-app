@@ -11,6 +11,7 @@ import Head from 'next/head';
 import { CustomDialog } from '@components/template/CustomDialogs/styles';
 import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
 import { User } from 'typescript/user';
+import { STATUS, PROFILES } from '@utils/user';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -21,20 +22,7 @@ import {
 } from './styles';
 import UsersTable from './users-table';
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
-const UserManagement = () => {
+const UserManagement: FC<{ title: string }> = ({ title }) => {
   const [users, setUsers] = useState<User[]>([
     {
       picture: '',
@@ -125,7 +113,7 @@ const UserManagement = () => {
 
     const newArray = [...users, userObj];
 
-    setUsers(newArray);
+    // setUsers(newArray);
 
     return true;
   };
@@ -192,7 +180,7 @@ const UserManagement = () => {
             name="profile"
             placeholder="Tipo de perfil"
           >
-            {names.map((item: string) => (
+            {PROFILES.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
                 {item}
               </MenuItem>
@@ -207,7 +195,7 @@ const UserManagement = () => {
             onChange={handleChange}
             placeholder="Status"
           >
-            {names.map((item: string) => (
+            {STATUS.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
                 {item}
               </MenuItem>
