@@ -8,6 +8,8 @@ import React, { ChangeEvent, useState } from 'react';
 import Button from '@mui/material/Button';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Head from 'next/head';
+import { CustomDialog } from '@components/template/CustomDialogs/styles';
+import DialogEditAndAddUser from '@components/template/CustomDialogs/dialog.edit.add';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -135,6 +137,13 @@ const UserManagement = () => {
           Novo utilizador
         </Button>
       </UsersManagementFilter>
+      {/* <ModalChangeUser /> */}
+      <DialogEditAndAddUser
+        changeType="add"
+        openModal
+        cancel={() => null}
+        handleOnSave={() => null}
+      />
       <UsersTable />
     </UsersManagementContainer>
   );

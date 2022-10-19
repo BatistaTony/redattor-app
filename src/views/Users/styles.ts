@@ -191,6 +191,20 @@ export const TablePaper = styled(Paper)`
       line-height: 18px;
       letter-spacing: 0.06em;
       color: #474c50;
+
+      .user-name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        margin-right: 16px;
+        object-fit: cover;
+      }
     }
 
     &:nth-child(even) {
