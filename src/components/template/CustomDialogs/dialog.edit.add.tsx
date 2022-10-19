@@ -212,6 +212,7 @@ const DialogEditAndAddUser: React.FC<DialogEditAndAddProductProps> = ({
             className="password-field"
             type="password"
             label="Senha"
+            onChange={handleChange}
           />
         </FormContainer>
       </DialogContent>
