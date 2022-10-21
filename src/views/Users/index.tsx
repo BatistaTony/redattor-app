@@ -8,9 +8,9 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import Button from '@mui/material/Button';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Head from 'next/head';
-import DialogEditAndAddUser from '@components/template/CustomDialog/dialog.edit.add';
+import DialogEditAndAddUser from '@components/template/CustomModal/modal-edit-add';
 import { User } from 'typescript/user';
-import { STATUS, PROFILES } from '@utils/user';
+import { STATUS, PROFILES } from '@constants/user';
 import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
 import {
   UsersManagementContainer,
@@ -21,71 +21,10 @@ import {
   UsersManagementHeaderTitle,
 } from './styles';
 import UsersTable from './users-table';
+import { dataExample } from './exampleData';
 
 const UserManagement: FC<{ title: string }> = ({ title }) => {
-  const [users, setUsers] = useState<User[]>([
-    {
-      picture: '',
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'test10',
-      phone: '+244941551087',
-      profile: 'Administrador',
-      status: 'Activo',
-    },
-    {
-      picture: '',
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'test15',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-    {
-      picture: '',
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'test12',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-    {
-      picture: '',
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'test11',
-      phone: '+244941551087',
-      profile: 'Colunista',
-      status: 'Activo',
-    },
-    {
-      picture: '',
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'test1054',
-      phone: '+244941551087',
-      profile: 'Administrador',
-      status: 'Activo',
-    },
-    {
-      picture: '',
-
-      email: 'batista@email.com',
-      firstName: 'Batista Oliveira',
-      lastName: '',
-      id: 'te4354st15',
-      phone: '+244941551087',
-      profile: 'Validador',
-      status: 'Activo',
-    },
-  ]);
+  const [users, setUsers] = useState<User[]>([...dataExample]);
   const [filter, setFilter] = useState({
     search: '',
     status: '',
@@ -126,11 +65,6 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
     <UsersManagementContainer>
       <Head>
         <title>{title}</title>
-        <link
-          href="http://fonts.googleapis.com/css?family=Roboto"
-          rel="stylesheet"
-          type="text/css"
-        />
       </Head>
       <UsersManagementHeader>
         <UsersManagementHeaderTitle>

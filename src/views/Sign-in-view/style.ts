@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-export default {};
-
 export const SignInContainer = styled.div`
   width: 100%;
   height: 100vh;

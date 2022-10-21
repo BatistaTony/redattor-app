@@ -8,3 +8,11 @@ export type User = {
   status: string;
   picture: string;
 };
+
+export interface ModalEditAndAddProductProps {
+  changeType: 'edit' | 'add';
+  openModal: boolean;
+  data: User | undefined;
+  cancel: () => void;
+  handleOnSave: (data: User) => Promise<boolean>;
+}

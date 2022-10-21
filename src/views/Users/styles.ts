@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { Paper } from '@mui/material';
 
-export default {};
-
 export const UsersManagementContainer = styled.div`
   width: 100%;
   display: flex;

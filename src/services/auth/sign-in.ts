@@ -1,7 +1,4 @@
-export interface SignInDataType {
-  userName: string;
-  password: string;
-}
+import { SignInDataType } from 'typescript/auth';
 
 export const signIn = async (data: SignInDataType): Promise<string> => {
   // SIMULATE LOGIN STATE

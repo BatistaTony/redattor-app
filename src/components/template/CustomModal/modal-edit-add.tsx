@@ -4,7 +4,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   TextField,
 } from '@mui/material';
 import React, { useState, useEffect, ChangeEvent, useCallback } from 'react';
@@ -13,24 +12,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
-import { User } from 'typescript/user';
+import { ModalEditAndAddProductProps, User } from 'typescript/user';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { PROFILES, STATUS } from '@utils/user';
+import { PROFILES, STATUS } from '@constants/user';
 import { useDropzone } from 'react-dropzone';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { validMail } from '@utils/helpers';
-import InputLabel from '@mui/material/InputLabel';
 import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
 import { CustomDialog, FormContainer } from './styles';
-
-interface DialogEditAndAddProductProps {
-  changeType: 'edit' | 'add';
-  openModal: boolean;
-  data: User | undefined;
-  cancel: () => void;
-  handleOnSave: (data: User) => Promise<boolean>;
-}
 
 interface UserExt extends User {
   password: string;
@@ -53,7 +43,7 @@ const INITIAL_STATE_ERROR_MSG = {
   field: '',
 };
 
-const DialogEditAndAddUser: React.FC<DialogEditAndAddProductProps> = ({
+const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
   changeType,
   openModal,
   data,
@@ -70,7 +60,7 @@ const DialogEditAndAddUser: React.FC<DialogEditAndAddProductProps> = ({
         setUserData({ ...data, password: '' });
       }
     }
-  }, []);
+  }, [changeType]);
 
   const handleChange = (event: ChangeEvent | SelectChangeEvent) => {
     setErrorMsg(INITIAL_STATE_ERROR_MSG);
@@ -314,16 +304,9 @@ const DialogEditAndAddUser: React.FC<DialogEditAndAddProductProps> = ({
         >
           Guardar alterações
         </LoadingButton>
-        {/* <Button
-          sx={{ textTransform: 'none' }}
-          type="button"
-          onClick={saveChanges}
-        >
-          Guardar alterações
-        </Button> */}
       </DialogActions>
     </CustomDialog>
   );
 };
 
-export default DialogEditAndAddUser;
+export default ModalEditAndAddUser;
