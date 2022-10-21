@@ -9,10 +9,11 @@ const Content: FC<{ children: ReactNode }> = ({ children }) => (
     sx={{
       backgroundColor: colors.light4,
       padding: '30px',
+      paddingTop: '15px',
     }}
   >
     <AppBar />
-    {children}
+    <Box sx={{ marginTop: '30px' }}>{children}</Box>
   </Box>
 );
 
