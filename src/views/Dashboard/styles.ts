@@ -20,7 +20,6 @@ export const DashboardContainer = styled.div`
     box-sizing: border-box;
 
     .exp-dt-wlc {
-      background-color: pink;
       width: 100%;
       height: 100%;
     }

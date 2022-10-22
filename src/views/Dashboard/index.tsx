@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
 import Head from 'next/head';
+import DahsboardCardWelcome from '@components/molecules/DashboardCardWelcome';
+import CardEstatistic from '@components/Atoms/CardEstatistic';
 import { DashboardContainer, ContainerDebugg } from './styles';
 
 const Dashboard: FC<{ title: string }> = ({ title }) => {
@@ -13,11 +15,11 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
 
       <div className="dash-b">
         <div className="exp-dt-wlc">
-          <ContainerDebugg />
+          <DahsboardCardWelcome />
         </div>
 
         <div className="wlc-cards-statcs">
-          <ContainerDebugg />
+          <CardEstatistic />
           <ContainerDebugg />
         </div>
       </div>

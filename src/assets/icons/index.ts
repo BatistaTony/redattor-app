@@ -7,6 +7,7 @@ import IconSort from './sort';
 import IconSettings from './settings';
 import IconLogout from './logout';
 import Logo, { MiniLogo } from './logo';
+import SaveIcon from './saveIcon';
 
 export {
   IconReport,
@@ -19,4 +20,5 @@ export {
   Logo,
   MiniLogo,
   SideIcon,
+  SaveIcon,
 };
