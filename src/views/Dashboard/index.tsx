@@ -29,7 +29,11 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
         <ContainerDebugg className="card" />
       </div>
 
-      <ContainerDebugg />
+      <div className="statcs-chart-container">
+        <div className="chart-container" />
+
+        <div className="card-statcs" />
+      </div>
     </DashboardContainer>
   );
 };

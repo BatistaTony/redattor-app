@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 
 export const DashboardContainer = styled.div`
   width: 100%;
-  height: 95%;
+  height: 100%;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 164px 100px auto;
+  grid-template-rows: 175px 100px auto;
   grid-gap: 20px;
   padding-top: 24px;
   box-sizing: border-box;
@@ -14,9 +14,9 @@ export const DashboardContainer = styled.div`
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 78% 20%;
+    grid-template-columns: 74% 23%;
     grid-template-rows: 100%;
-    justify-content: space-between;
+    grid-column-gap: 3%;
     box-sizing: border-box;
 
     .exp-dt-wlc {
@@ -49,6 +49,27 @@ export const DashboardContainer = styled.div`
       width: 100%;
       height: 100%;
       background: blue;
+    }
+  }
+
+  .statcs-chart-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 74% 23%;
+    grid-template-rows: 100%;
+    grid-column-gap: 3%;
+    box-sizing: border-box;
+
+    .chart-container {
+      height: 100%;
+      background: pink;
+    }
+
+    .card-statcs {
+      height: 100%;
+      background: yellow;
+      background: pink;
     }
   }
 `;
