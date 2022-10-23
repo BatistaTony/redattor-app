@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { BarChartDataType } from 'typescript/bar-chart';
+
 import { getBarColorByPercentage } from './helper';
 import { CustomChartBarContainer } from './styles';
 import { CustomChartBarProps } from './type';
@@ -23,6 +24,7 @@ const CustomChartBar = ({ data }: CustomChartBarProps) => (
         </div>
       </div>
     ))}
+    {/* <Bar options={options} data={data} height={200} width={170} />; */}
   </CustomChartBarContainer>
 );
 

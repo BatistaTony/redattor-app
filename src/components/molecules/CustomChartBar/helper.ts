@@ -13,3 +13,64 @@ export const getBarColorByPercentage = (percentage: number): string => {
 
   return '';
 };
+
+export const options = {
+  indexAxis: 'y' as const,
+  elements: {
+    bar: {
+      barThickness: 20,
+      borderRadius: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: false,
+    },
+  },
+  y: {
+    grid: {
+      display: false,
+    },
+  },
+  x: {
+    grid: {
+      display: false,
+    },
+  },
+  xAxes: [
+    {
+      gridLines: {
+        display: false,
+      },
+    },
+  ],
+};
+
+const labels = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Ago',
+  'Sep',
+  'Out',
+  'Nov',
+  'Dec',
+];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      data: labels.map(() => 70),
+      backgroundColor: '#4684F7',
+    },
+  ],
+};

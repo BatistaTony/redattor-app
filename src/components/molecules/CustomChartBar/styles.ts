@@ -6,6 +6,7 @@ export const CustomChartBarContainer = styled.div`
   height: 100%;
   width: 100%;
   padding: 20px;
+  /* overflow: hidden; */
 
   .chart-title {
     margin-bottom: 20px;

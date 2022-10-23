@@ -1,11 +1,31 @@
 import { CHART_OPTIONS } from '@constants/chart';
 import { Typography } from '@mui/material';
 import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import {
   ColumnChartContainer,
   ColumnChartOption,
   ColumnChartOptionItem,
 } from './styles';
 import { ColumnChartProps } from './type';
+import { data, options } from './helper';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 const ColumnChart = ({ chartOption, handleOptionSelect }: ColumnChartProps) => (
   <ColumnChartContainer>
@@ -26,7 +46,9 @@ const ColumnChart = ({ chartOption, handleOptionSelect }: ColumnChartProps) => (
       </ColumnChartOption>
     </div>
 
-    <div className="chart-data-container" />
+    <div className="chart-data-container">
+      <Bar options={options as unknown as never} data={data} />;
+    </div>
   </ColumnChartContainer>
 );
 
