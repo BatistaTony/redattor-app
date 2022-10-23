@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Typography, Button } from '@mui/material';
-import { SaveIcon } from 'assets/icons';
 import { BlogginPanaIllustration } from 'assets/illustration';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import { DahsboardCardWelcomeContainer } from './styles';
 
 const DahsboardCardWelcome = () => {
@@ -24,7 +24,7 @@ const DahsboardCardWelcome = () => {
             <span style={{ fontWeight: '700' }}>Batista Oliveira !</span>
           </Typography>
           <Button sx={{ textTransform: 'none' }} className="btn-card-ctr">
-            <SaveIcon /> Exportar dados Dash
+            <SaveAltIcon /> Exportar dados Dash
           </Button>
         </div>
         <Typography

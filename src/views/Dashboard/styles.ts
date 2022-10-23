@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const DashboardContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 175px 100px auto;
@@ -59,16 +59,55 @@ export const DashboardContainer = styled.div`
     grid-template-rows: 100%;
     grid-column-gap: 3%;
     box-sizing: border-box;
+    padding-bottom: 50px;
 
     .chart-container {
       height: 100%;
-      background: pink;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
     }
 
     .card-statcs {
       height: 100%;
-      background: yellow;
-      background: pink;
+      display: grid;
+      grid-template-rows: 96px repeat(3, 52px);
+      background: #fff;
+      border-radius: 6px;
+
+      .card-estatistic-container {
+        border-radius: 0;
+        background: #fff;
+        border-bottom: 1px solid #e7e7fe;
+      }
+
+      .ctr-card {
+        .data-item {
+          width: 32px;
+          height: 32px;
+          background: rgba(70, 132, 247, 0.2);
+
+          h1 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: #4684f7;
+          }
+        }
+        .card-content {
+          .text-data {
+            color: #7a7d82;
+          }
+        }
+      }
+    }
+
+    .chart-bar-date {
+      width: 100%;
+      height: 100%;
+      padding: 20px 13px;
     }
   }
 `;
@@ -77,4 +116,33 @@ export const ContainerDebugg = styled.div`
   width: 100%;
   height: 100%;
   background-color: green;
+`;
+
+interface CardEstatisctIconProps {
+  bg: string;
+}
+
+export const CardEstatisctIcon = styled.div<CardEstatisctIconProps>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .div-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({ bg }) => bg || 'rgba(255, 255, 255, 0.2)'};
+    opacity: 0.2;
+    z-index: 1;
+  }
+
+  svg {
+    z-index: 2;
+  }
 `;

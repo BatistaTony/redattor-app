@@ -7,28 +7,40 @@ export const CardEstatisticContainer = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 16px;
-  background: blue;
+  background: #ffffff;
   box-shadow: 0px 0px 4px -13px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
+  background: #4684f7;
 
   .data-item {
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 6px;
-    width: 52px;
+    width: 60px;
     max-width: auto;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 50px;
     margin-right: 26px;
+    overflow: hidden;
+
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 150%;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
 
   .card-content {
-    height: 44px;
-    background: red;
     display: flex;
+    height: 50px;
     flex-direction: column;
-    justify-content: space-between;
+    height: auto;
 
     .text-data {
       font-family: 'Roboto';
@@ -46,6 +58,9 @@ export const CardEstatisticContainer = styled.div`
       font-weight: 700;
       font-size: 24px;
       color: #1e2327;
+      line-height: 150%;
+      margin: 0;
+      padding: 0;
     }
 
     .card-legend {
@@ -54,6 +69,9 @@ export const CardEstatisticContainer = styled.div`
       font-weight: 500;
       font-size: 14px;
       color: #7a7d82;
+      line-height: 150%;
+      margin: 0;
+      padding: 0;
     }
   }
 `;
