@@ -16,7 +16,7 @@ const CircleButton: FC<{ toggleDrawer: () => void; isOpen: boolean }> = ({
       width={32}
       height={32}
       style={{
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 30,
         marginLeft: -20,
         cursor: 'pointer',

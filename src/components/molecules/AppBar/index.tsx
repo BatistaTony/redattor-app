@@ -5,12 +5,16 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import { pathTitles } from '@utils/paths';
-import colors from '@utils/colors';
+import { useTheme } from '@mui/material';
 import AvatarWrapper from './avatarWrapper';
 
 const AppBar = () => {
   const router = useRouter();
   const [currentPash, setCurrentPath] = useState<string>();
+  const theme = useTheme();
+
+  const { palette } = theme;
+  const { colors } = palette;
 
   useEffect(() => {
     if (!router.isReady) return;
