@@ -1,6 +1,6 @@
 export type Layout = {
   id: string;
-  icon: any;
+  icon: string;
   title: string;
   description: string;
 };

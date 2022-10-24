@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { pathTitles } from '@utils/paths';
-import colors from '@utils/colors';
+import { useTheme } from '@mui/material';
 import { SectionsContent } from './getSectionsContnet';
 
 const Home = () => {
@@ -15,6 +15,11 @@ const Home = () => {
   const [loadingPash, setLoadingPash] = useState(true);
 
   const router = useRouter();
+
+  const theme = useTheme();
+
+  const { palette } = theme;
+  const { colors } = palette;
 
   useEffect(() => {
     if (!router.isReady) return;

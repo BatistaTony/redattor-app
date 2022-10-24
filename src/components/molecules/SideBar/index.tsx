@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useRouter } from 'next/router';
-import colors from '@utils/colors';
+import { useTheme } from '@mui/material';
 import Logo from './components/logoWrapper';
 import { appBarData, Drawer } from './utils';
 import CircleButton from './components/makeManuLargeButtton';
@@ -16,6 +16,11 @@ export default function SideBar() {
   const [loadingPash, setLoadingPash] = useState(true);
 
   const router = useRouter();
+
+  const theme = useTheme();
+
+  const { palette } = theme;
+  const { colors } = palette;
 
   useEffect(() => {
     if (!router.isReady) return;
