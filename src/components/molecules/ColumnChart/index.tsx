@@ -47,7 +47,7 @@ const ColumnChart = ({ chartOption, handleOptionSelect }: ColumnChartProps) => (
     </div>
 
     <div className="chart-data-container">
-      <Bar options={options as unknown as never} data={data} />;
+      <Bar options={options as unknown as never} data={data} />
     </div>
   </ColumnChartContainer>
 );

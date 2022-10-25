@@ -24,7 +24,6 @@ const CustomChartBar = ({ data }: CustomChartBarProps) => (
         </div>
       </div>
     ))}
-    {/* <Bar options={options} data={data} height={200} width={170} />; */}
   </CustomChartBarContainer>
 );
 
