@@ -10,7 +10,19 @@ export const CardEstatisticContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 4px -13px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
-  background: #4684f7;
+  background: #ffffff;
+  position: relative;
+
+  .card-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    background: url('/background/para-fundo-branco.png') no-repeat;
+    background-size: contain;
+    background-position: right;
+  }
 
   .data-item {
     border-radius: 6px;

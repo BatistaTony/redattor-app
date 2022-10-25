@@ -45,8 +45,8 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
         <CardEstatistic
           data={
             <CardEstatisctIcon bg="#E7E7FE">
-              <div className="div-bg" />
-              <ContentPasteRoundedIcon sx={{ color: '#E7E7FE' }} />
+              <div className="div-bg" style={{ opacity: 1 }} />
+              <ContentPasteRoundedIcon sx={{ color: '#6A6CF6' }} />
             </CardEstatisctIcon>
           }
           title="5"

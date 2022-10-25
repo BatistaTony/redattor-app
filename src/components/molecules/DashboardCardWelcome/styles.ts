@@ -11,15 +11,28 @@ export const DahsboardCardWelcomeContainer = styled.div`
   flex-direction: row;
   position: relative;
   align-items: center;
+  overflow: hidden;
+
+  .card-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    background: url('/background/padrão-big.png') no-repeat;
+    background-size: 100% 100%;
+  }
 
   .illustration-blog {
     position: absolute;
     right: 35px;
     bottom: 1px;
+    z-index: 2;
   }
 
   .content-contaienr {
     width: 70%;
+    z-index: 2;
   }
 
   .card-ctr-dash {

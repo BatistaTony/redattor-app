@@ -10,6 +10,7 @@ const CardEstatistic: FC<CardEstatisticType> = ({
   title,
 }) => (
   <CardEstatisticContainer className="card-estatistic-container">
+    <div className="card-bg" />
     <div>
       <div className="data-item">{data}</div>
     </div>

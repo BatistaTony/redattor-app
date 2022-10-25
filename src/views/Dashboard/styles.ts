@@ -33,6 +33,15 @@ export const DashboardContainer = styled.div`
       grid-template-columns: 100%;
       justify-content: space-between;
       grid-gap: 6%;
+
+      .card-estatistic-container {
+        background: linear-gradient(
+          124.74deg,
+          #6a6cf6 148.97%,
+          rgba(0, 0, 0, 0.3) 29.53%
+        );
+        /* background: #6a6cf6; */
+      }
     }
   }
 
@@ -74,6 +83,10 @@ export const DashboardContainer = styled.div`
       grid-template-rows: 96px repeat(3, 52px);
       background: #fff;
       border-radius: 6px;
+
+      .card-bg {
+        display: none;
+      }
 
       .card-estatistic-container {
         border-radius: 0;

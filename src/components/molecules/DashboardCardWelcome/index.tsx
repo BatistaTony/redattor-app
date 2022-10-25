@@ -9,6 +9,7 @@ const DahsboardCardWelcome = () => {
 
   return (
     <DahsboardCardWelcomeContainer>
+      <div className="card-bg" />
       <div className="content-contaienr">
         <div className="card-ctr-dash">
           <Typography
