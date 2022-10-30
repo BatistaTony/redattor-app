@@ -1,3 +1,4 @@
+import WithAuth from '@components/hoc/withAuth';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
@@ -20,4 +21,4 @@ const Home: NextPage = () => (
   </div>
 );
 
-export default Home;
+export default WithAuth(Home);

@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Home from '@views/Home';
+import WithAuth from '@components/hoc/withAuth';
 import styles from '../styles/Home.module.css';
 
 const Homes: NextPage = () => (
@@ -17,4 +18,4 @@ const Homes: NextPage = () => (
   </div>
 );
 
-export default Homes;
+export default WithAuth(Homes);

@@ -21,14 +21,14 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
-    "no-useless-constructor":"off",
+    "no-useless-constructor": "off",
     "import/no-unresolved": "error",
-    "react/jsx-filename-extension": [1, {
-      "extensions": [
-        ".ts",
-        ".tsx"
-      ]
-    }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
     "prettier/prettier": [
       "error",
       {
@@ -39,6 +39,7 @@
       }
     ],
     "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
@@ -71,4 +72,3 @@
     }
   }
 }
-

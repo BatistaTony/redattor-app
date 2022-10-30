@@ -1,6 +1,8 @@
 import originalAxios, { AxiosInstance } from 'axios';
 import { RedatorHttpClient, RedatorAdapterResponse } from './http.type';
 
+const BASE_URL = process.env.NEXT_PUBLIC_UTENTE_BASE_URL;
+
 class AxiosAdapter implements RedatorHttpClient {
   constructor(private axiosDep: AxiosInstance) {}
 
@@ -57,7 +59,7 @@ class AxiosAdapter implements RedatorHttpClient {
 
 const axios = new AxiosAdapter(
   originalAxios.create({
-    baseURL: '',
+    baseURL: BASE_URL,
   }),
 );
 

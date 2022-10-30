@@ -99,9 +99,12 @@ const SignInView = () => {
 
       if (resp === 'success') {
         setLoading(false);
-        router.push('/dashboard');
+        router.push('/home');
       } else {
-        // TODO: GIVE FEEDBACK ABOUT THE SERVER RESPONSE
+        setErrorMsg({
+          field: 'server',
+          msg: resp,
+        });
         setLoading(false);
       }
     }
@@ -172,6 +175,11 @@ const SignInView = () => {
             )}
           </FormControl>
         </div>
+
+        {errorMsg.field === 'server' && (
+          <p className="svr-error-msg">{errorMsg.msg}</p>
+        )}
+
         <LoadingButton
           sx={{ textTransform: 'none' }}
           disabled={checkFields()}
@@ -181,7 +189,7 @@ const SignInView = () => {
         >
           Entrar
         </LoadingButton>
-        <SignInLink href="#">Esqueceu a sua senha ?</SignInLink>
+        {/* <SignInLink href="#">Esqueceu a sua senha ?</SignInLink> */}
       </SignInFormContainer>
     </SignInContainer>
   );

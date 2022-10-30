@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-export default {};
-
 export const SignInContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -16,8 +14,12 @@ export const SignInFormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 400px;
+  height: 500px;
   box-sizing: border-box;
+
+  .svr-error-msg {
+    color: #ff5959;
+  }
 
   .MuiButton-contained {
     width: 400px;

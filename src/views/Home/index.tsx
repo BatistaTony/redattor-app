@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 
 import { pathTitles } from '@utils/paths';
 import { useTheme } from '@mui/material';
+import WithAuth from '@components/hoc/withAuth';
 import { SectionsContent } from './getSectionsContnet';
 
 const Home = () => {
@@ -69,4 +70,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default WithAuth(Home);
