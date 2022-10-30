@@ -21,6 +21,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
+    "no-useless-constructor":"off",
     "import/no-unresolved": "error",
     "react/jsx-filename-extension": [1, {
       "extensions": [
