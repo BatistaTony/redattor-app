@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { paths } from '@utils/paths';
 import DashboardDemo from '@views/DashboardDemo';
-import LayoutManagement from '@views/LayoutManagement';
+import UserManagement from '@views/Users';
 
 export const SectionsContent = ({
   path,
@@ -16,11 +16,11 @@ export const SectionsContent = ({
     case paths.CHANGE_RECORD:
       return <DashboardDemo title={title} />;
     case paths.LAYOUT:
-      return <LayoutManagement />;
+      return <DashboardDemo title={title} />;
     case paths.REPORTS:
       return <DashboardDemo title={title} />;
     case paths.USERS:
-      return <DashboardDemo title={title} />;
+      return <UserManagement title={title} />;
     case paths.SETTINGS:
       return <DashboardDemo title={title} />;
     default:
