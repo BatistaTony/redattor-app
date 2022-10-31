@@ -5,6 +5,9 @@ import colors from '@utils/colors';
 
 const theme = createTheme({
   palette: {
+    primary: {
+      main: colors.purpleDark,
+    },
     colors,
   },
 });

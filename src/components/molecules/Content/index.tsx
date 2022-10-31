@@ -5,7 +5,11 @@ import colors from '@utils/colors';
 
 const Content: FC<{ children: ReactNode }> = ({ children }) => (
   <Box
-    style={{ width: '100%', height: '100vh', flex: 1 }}
+    style={{
+      width: '100%',
+      height: '100vh',
+      flex: 1,
+    }}
     sx={{
       backgroundColor: colors.light4,
       padding: '30px',
@@ -13,7 +17,9 @@ const Content: FC<{ children: ReactNode }> = ({ children }) => (
     }}
   >
     <AppBar />
-    <Box sx={{ marginTop: '30px' }}>{children}</Box>
+    <Box sx={{ marginTop: '30px', flex: 1, height: 'calc(100% - 60px)' }}>
+      {children}
+    </Box>
   </Box>
 );
 

@@ -58,7 +58,7 @@ const Home = () => {
     >
       <MiniDrawer />
 
-      <Content>
+      <Content styl={{ height: '100%' }}>
         {currentPash &&
           SectionsContent({
             path: currentPash,
