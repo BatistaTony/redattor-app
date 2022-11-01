@@ -28,6 +28,7 @@ export const createUser = async (user: CreateUserProps) => {
     if (response.status === 200 || response.status === 201) {
       return response;
     }
+    return response.status;
   } catch (error: any) {
     const msg = error.response?.data?.message;
 

@@ -30,6 +30,7 @@ export const updateUser = async (user: CreateUserProps) => {
     if (response.status === 200 || response.status === 201) {
       return response;
     }
+    return response.status;
   } catch (error: any) {
     return 'failed';
   }
