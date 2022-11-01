@@ -67,7 +67,6 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
 
   const handleGetUsers = async () => {
     const response = await getUsers({
-      limit: 10,
       name: filter.search,
       page,
       status: UserStatusApi[filter.status as string],
