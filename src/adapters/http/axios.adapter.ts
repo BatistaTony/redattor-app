@@ -1,7 +1,10 @@
 import originalAxios, { AxiosInstance } from 'axios';
+import { getCookies } from '@utils/cookies';
 import { RedatorHttpClient, RedatorAdapterResponse } from './http.type';
 
 const BASE_URL = process.env.NEXT_PUBLIC_UTENTE_BASE_URL;
+
+const AUTH_TOKEN = getCookies(['AUTH_TOKEN'])[0];
 
 class AxiosAdapter implements RedatorHttpClient {
   constructor(private axiosDep: AxiosInstance) {}
@@ -60,6 +63,9 @@ class AxiosAdapter implements RedatorHttpClient {
 const axios = new AxiosAdapter(
   originalAxios.create({
     baseURL: BASE_URL,
+    headers: {
+      Authorization: `Bearer ${AUTH_TOKEN}`,
+    },
   }),
 );
 

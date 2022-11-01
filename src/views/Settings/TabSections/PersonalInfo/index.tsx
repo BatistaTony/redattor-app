@@ -1,24 +1,16 @@
-import { FC } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { Button, Box } from '@mui/material';
 import TabPanel from '../utils';
 import PersonalInfoForm from './form';
+import { UpdateUserForm } from '../../types';
 
-const PersonalInfo: FC<{ value: number; index: number }> = ({
-  value,
-  index,
-}) => (
+const PersonalInfo: FC<{
+  value: number;
+  index: number;
+  inCommingData?: UpdateUserForm;
+}> = ({ value, index, inCommingData }) => (
   <TabPanel value={value} index={index}>
-    <PersonalInfoForm />
-
-    <Box display="flex" justifyContent="flex-end" marginTop="50px">
-      <Button
-        variant="contained"
-        size="large"
-        style={{ alignSelf: 'flex-end' }}
-      >
-        Guardar alterações
-      </Button>
-    </Box>
+    <PersonalInfoForm inCommingData={inCommingData} />
   </TabPanel>
 );
 

@@ -1,11 +1,14 @@
-/* eslint-disable react/require-default-props */
-import { FC, useState, SyntheticEvent } from 'react';
+import { FC, useState, SyntheticEvent, useEffect } from 'react';
 import { Box, Tab, Tabs, useTheme } from '@mui/material';
 
 import {
   AdminPanelSettingsOutlined,
   AccountCircleOutlined,
 } from '@mui/icons-material';
+import { getUserInfo } from '@services/user/getUserInfo';
+import { IUser } from 'typescript/user.type';
+import { DataToShow, UpdateUserForm } from './types';
+
 import { TabsContent } from './TabSections';
 import AvatarSection from './AvatarSection';
 
@@ -19,6 +22,7 @@ function a11yProps(index: number) {
 const tabData = ['Informações pessoais', 'Segurança'];
 
 const CustomTabs: FC = () => {
+  const [userData, setUserData] = useState<IUser>();
   const [value, setValue] = useState(0);
   const { palette } = useTheme();
 
@@ -27,6 +31,16 @@ const CustomTabs: FC = () => {
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await getUserInfo();
+
+      setUserData(data as any);
+    })();
+  }, []);
+
+  console.log('aqui', userData);
 
   return (
     <Box
@@ -64,7 +78,7 @@ const CustomTabs: FC = () => {
               }
               style={{
                 textTransform: 'capitalize',
-                color: index === value ? colors.purpleDark : colors.gray5,
+                color: index === value ? colors.purpleDark : colors.gray4,
               }}
               key={item}
               label={item}
@@ -74,9 +88,15 @@ const CustomTabs: FC = () => {
         </Tabs>
 
         <Box style={{ width: '80%', margin: '40px auto 0' }}>
-          <AvatarSection />
+          <AvatarSection
+            userHole={userData?.userType}
+            fullName={userData?.fullname}
+          />
 
-          <TabsContent value={value} />
+          <TabsContent
+            value={value}
+            inCommingData={DataToShow(userData) as any}
+          />
         </Box>
       </Box>
       {}

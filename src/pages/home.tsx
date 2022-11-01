@@ -16,4 +16,4 @@ const Home: NextPage = () => (
   </div>
 );
 
-export default Home;
+export default WithoutAuth(Home);

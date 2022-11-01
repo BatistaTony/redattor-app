@@ -29,6 +29,7 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
+    "react/require-default-props": "off",
     "prettier/prettier": [
       "error",
       {
