@@ -2,10 +2,12 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createTheme, ThemeProvider } from '@mui/material';
 import colors from '@utils/colors';
-import WithAuth from '@components/hoc/withAuth';
 
 const theme = createTheme({
   palette: {
+    primary: {
+      main: colors.purpleDark,
+    },
     colors,
   },
 });

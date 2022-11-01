@@ -7,12 +7,16 @@ const WithoutAuth = <T extends object>(Component: FC<T>) => {
   const AuthComponent: FC<T> = props => {
     const route = useRouter();
     const [loading, setLoading] = useState(true);
-    // const AUTH_TOKEN = getCookies(['AUTH_TOKEN'])[0];
-    const AUTH_TOKEN = 'skjdbksjdbksjbd';
+    const AUTH_TOKEN = getCookies(['AUTH_TOKEN'])[0];
+
+    // const AUTH_TOKEN = 'ksjdskdjb';
+
+    console.log('tem algo de errado 222', AUTH_TOKEN);
 
     useEffect(() => {
       if (!AUTH_TOKEN) {
         route.push('/sign-in');
+        // setLoading(false);
       } else setLoading(false);
     }, [AUTH_TOKEN]);
 

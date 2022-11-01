@@ -9,14 +9,18 @@ const WithAuth = <T extends object>(Component: FC<T>) => {
     const [loading, setLoading] = useState(true);
 
     const AUTH_TOKEN = getCookies(['AUTH_TOKEN'])[0];
+    // const AUTH_TOKEN = 'kajsnkasjn';
+
+    console.log('tem algo de errado', AUTH_TOKEN);
 
     useEffect(() => {
       if (AUTH_TOKEN) {
-        route.push('/home');
+        route.push('/home/dashboard');
+        // setLoading(false);
       } else setLoading(false);
-    }, [AUTH_TOKEN]);
+    }, [AUTH_TOKEN, route]);
 
-    if (loading) return <div />;
+    if (loading) return <div>olllll</div>;
 
     return <Component {...props} />;
   };

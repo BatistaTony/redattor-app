@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Home from '@views/Home';
+import HomePage from '@views/Home';
 import WithoutAuth from '@components/hoc/withoutAuth';
 import styles from '../styles/Home.module.css';
 
-const Homes: NextPage = () => (
+const Home: NextPage = () => (
   <div className={styles.container}>
     <Head>
       <title>Redator App</title>
@@ -12,10 +12,8 @@ const Homes: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className={styles.main}>
-      <Home />
-    </main>
+    <HomePage />
   </div>
 );
 
-export default WithoutAuth(Homes);
+export default Home;

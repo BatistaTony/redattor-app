@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 
 import { pathTitles } from '@utils/paths';
 import { useTheme } from '@mui/material';
-import WithAuth from '@components/hoc/withAuth';
 import { SectionsContent } from './getSectionsContnet';
 
 const Home = () => {
@@ -59,7 +58,7 @@ const Home = () => {
     >
       <MiniDrawer />
 
-      <Content>
+      <Content styl={{ height: '100%' }}>
         {currentPash &&
           SectionsContent({
             path: currentPash,
@@ -70,4 +69,4 @@ const Home = () => {
   );
 };
 
-export default WithAuth(Home);
+export default Home;
