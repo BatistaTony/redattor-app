@@ -66,23 +66,24 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
   };
 
   const handleGetUsers = async () => {
+    const status = UserStatusApi[filter.status as keyof typeof UserStatusApi];
+    const userType =
+      UserProfileApi[filter.profile as keyof typeof UserProfileApi];
+
     const response = await getUsers({
       name: filter.search,
       page,
-      status: UserStatusApi[filter.status as string],
-      userType: UserProfileApi[filter.profile as string],
+      status,
+      userType,
     });
 
     const jsonResponse: UserType[] = await response.json();
 
-    const { data, pages, totalItems } = jsonResponse;
+    const { data, pages, totalItems } = jsonResponse as any;
 
     setTotal(totalItems);
 
     const result = data?.map((user: UserType) => {
-      const profile = UserProfile[user.userType as string];
-      const status = UserStatus[user.status as string];
-
       const fullNameArray = user.fullname.split(' ');
 
       const lastName = fullNameArray.pop();
@@ -95,8 +96,8 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
         id: user.id,
         phone: user.phone,
         picture: user.profileImage || '',
-        profile,
-        status,
+        profile: UserProfile[user.userType as keyof typeof UserProfile],
+        status: UserStatus[user.status as keyof typeof UserStatus],
       };
     });
 
@@ -113,7 +114,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       fullname: `${data.firstName} ${data.lastName}`,
       password: data.password as string,
       phone: data.phone,
-      userType: UserProfileApi[data.profile as string] as unknown as any,
+      userType: UserProfileApi[data.profile as keyof typeof UserProfileApi],
     };
 
     const response = await createUser(objFormat);
@@ -139,12 +140,12 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       id: user.id,
       phone: user.phone,
       picture: user.profileImage || '',
-      profile: UserProfile[user.userType as string],
+      profile: UserProfile[user.userType as keyof typeof UserProfile],
     };
 
     const oldState = [...users, userSaved];
 
-    setUsers(oldState);
+    setUsers(oldState as any);
 
     return true;
   };
@@ -180,7 +181,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       fullname: `${data.firstName} ${data.lastName}`,
       password: data.password as string,
       phone: data.phone,
-      userType: UserProfileApi[data.profile as string] as unknown as any,
+      userType: UserProfileApi[data.profile as keyof typeof UserProfileApi],
     };
 
     const response = await updateUser(objFormat);
