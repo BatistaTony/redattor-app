@@ -23,7 +23,7 @@ export const signIn = async (data: SignInDataType): Promise<string> => {
     const errorResponse = (error as unknown as any).response;
 
     if (errorResponse.status === 403) {
-      return 'Utilizador não encontrado, verifique as credencias';
+      return 'Utilizador ou senha incorretos, verifique as credencias';
     }
     if (errorResponse.status === 400) {
       return 'Formato do nome do utilizador invalido [ nome.nome+(numero) ]';

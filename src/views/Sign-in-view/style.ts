@@ -7,6 +7,8 @@ export const SignInContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background-color: #ffffff;
 `;
 
 export const SignInFormContainer = styled.div`
