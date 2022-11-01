@@ -4,14 +4,25 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Head from 'next/head';
 import DialogEditAndAddUser from '@components/template/CustomModal/modal-edit-add';
-import { User } from 'typescript/user';
+import {
+  User,
+  UserProfile,
+  UserProfileApi,
+  UserStatus,
+  UserStatusApi,
+  UserType,
+} from 'typescript/user';
 import { STATUS, PROFILES } from '@constants/user';
 import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
+import { getUsers } from '@services/users/get-users';
+import { createUser } from '@services/users/create-user';
+import { updateUser } from '@services/users/update-user';
+import { toast, ToastContainer } from 'react-toast';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -21,14 +32,22 @@ import {
   UsersManagementHeaderTitle,
 } from './styles';
 import UsersTable from './users-table';
-import { dataExample } from './exampleData';
 
 const UserManagement: FC<{ title: string }> = ({ title }) => {
-  const [users, setUsers] = useState<User[]>([...dataExample]);
+  const [users, setUsers] = useState<User[]>([]);
   const [filter, setFilter] = useState({
     search: '',
     status: '',
     profile: '',
+  });
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [total, setTotal] = useState<number>(0);
+  const [editData, setEditData] = useState<User | null>(null);
+  const [usersStatistic, setUsersStatistic] = useState({
+    colunistas: 0,
+    validadores: 0,
+    administradores: 0,
   });
 
   const [showUserDialog, setShowUserDialog] = useState(false);
@@ -42,27 +61,167 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
     });
   };
 
-  const handleOnSaveUser = async (data: User) => {
-    const id = `${users.length + 1}`;
-
-    const userObj = {
-      ...data,
-      id,
-    };
-
-    const newArray = [...users, userObj];
-
-    setUsers(newArray);
-
-    return true;
-  };
-
   const cancelCustomDialog = () => {
     setShowUserDialog(false);
   };
 
+  const handleGetUsers = async () => {
+    const response = await getUsers({
+      limit: 10,
+      name: filter.search,
+      page,
+      status: UserStatusApi[filter.status as string],
+      userType: UserProfileApi[filter.profile as string],
+    });
+
+    const jsonResponse: UserType[] = await response.json();
+
+    const { data, pages, totalItems } = jsonResponse;
+
+    setTotal(totalItems);
+
+    const result = data?.map((user: UserType) => {
+      const profile = UserProfile[user.userType as string];
+      const status = UserStatus[user.status as string];
+
+      const fullNameArray = user.fullname.split(' ');
+
+      const lastName = fullNameArray.pop();
+      const firstName = fullNameArray.join(' ');
+
+      return {
+        email: user.email,
+        firstName,
+        lastName,
+        id: user.id,
+        phone: user.phone,
+        picture: user.profileImage || '',
+        profile,
+        status,
+      };
+    });
+
+    setUsers(result);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleOnSaveUser = async (data: User) => {
+    const objFormat = {
+      email: data.email,
+      fullname: `${data.firstName} ${data.lastName}`,
+      password: data.password as string,
+      phone: data.phone,
+      userType: UserProfileApi[data.profile as string] as unknown as any,
+    };
+
+    const response = await createUser(objFormat);
+
+    if (response === 'failed') {
+      toast.error(
+        'Ocorreu algum erro, verifique o formulario e tente novamente ',
+      );
+
+      return false;
+    }
+    const user = response.data;
+
+    if (response === 400) {
+      toast.error('Utilizador já existe com este numero de telefone');
+      return false;
+    }
+
+    const userSaved = {
+      email: user.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      id: user.id,
+      phone: user.phone,
+      picture: user.profileImage || '',
+      profile: UserProfile[user.userType as string],
+    };
+
+    const oldState = [...users, userSaved];
+
+    setUsers(oldState);
+
+    return true;
+  };
+
+  const getStatistic = async () => {
+    const respAdmins = await getUsers({
+      userType: 'admin',
+    });
+
+    const respValidators = await getUsers({
+      userType: 'validator',
+    });
+
+    const respColumnist = await getUsers({
+      userType: 'columnist',
+    });
+
+    const vals = await respValidators.json();
+    const cols = await respColumnist.json();
+    const admins = await respAdmins.json();
+
+    setUsersStatistic({
+      administradores: admins.totalItems,
+      colunistas: cols.totalItems,
+      validadores: vals.totalItems,
+    });
+  };
+
+  const handleOnSaveUserEditedUser = async (data: User) => {
+    const objFormat = {
+      id: data.id,
+      email: data.email,
+      fullname: `${data.firstName} ${data.lastName}`,
+      password: data.password as string,
+      phone: data.phone,
+      userType: UserProfileApi[data.profile as string] as unknown as any,
+    };
+
+    const response = await updateUser(objFormat);
+
+    if (response === 'failed') {
+      toast.error(
+        'Ocorreu algum erro, verifique o formulario e tente novamente ',
+      );
+      return false;
+    }
+
+    const userFound = users.findIndex((user: User) => user.id === data.id);
+    const copyUsers = [...users];
+
+    if (userFound >= 0) {
+      copyUsers[userFound] = {
+        ...data,
+      };
+
+      setUsers(copyUsers);
+    }
+
+    return true;
+  };
+
+  useEffect(() => {
+    handleGetUsers();
+  }, [page, filter]);
+
+  useEffect(() => {
+    handleGetUsers();
+  }, []);
+
+  useEffect(() => {
+    getStatistic();
+  }, [users]);
+
   return (
     <UsersManagementContainer>
+      <ToastContainer position="top-right" />
       <Head>
         <title>{title}</title>
       </Head>
@@ -76,16 +235,16 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
 
         <UsersManagementEstatistica>
           <UsersManagementEstatisticaCard>
-            <div className="number-usr">20</div>
-            <Typography variant="h5">Gestão de utilizadores</Typography>
+            <div className="number-usr">{usersStatistic.administradores}</div>
+            <Typography variant="h5">Administradores</Typography>
           </UsersManagementEstatisticaCard>
           <UsersManagementEstatisticaCard>
-            <div className="number-usr">20</div>
-            <Typography variant="h5">Gestão de utilizadores</Typography>
+            <div className="number-usr">{usersStatistic.validadores}</div>
+            <Typography variant="h5">Validadores</Typography>
           </UsersManagementEstatisticaCard>
           <UsersManagementEstatisticaCard>
-            <div className="number-usr">20</div>
-            <Typography variant="h5">Gestão de utilizadores</Typography>
+            <div className="number-usr">{usersStatistic.colunistas}</div>
+            <Typography variant="h5">Colunistas</Typography>
           </UsersManagementEstatisticaCard>
         </UsersManagementEstatistica>
       </UsersManagementHeader>
@@ -121,6 +280,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
                 : undefined
             }
           >
+            <MenuItem value="">Todos</MenuItem>
             {PROFILES.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
                 {item}
@@ -142,6 +302,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
                 : undefined
             }
           >
+            <MenuItem value="">Todos</MenuItem>
             {STATUS.map((item: string) => (
               <MenuItem key={`${item}`} value={item}>
                 {item}
@@ -167,7 +328,16 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
           handleOnSave={handleOnSaveUser}
         />
       )}
-      <UsersTable users={users} />
+      <UsersTable
+        users={users}
+        editData={editData}
+        handleChangePage={handleChangePage}
+        handleOnSaveUser={handleOnSaveUserEditedUser}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        total={total}
+        setEditData={(state: User | null) => setEditData(state)}
+      />
     </UsersManagementContainer>
   );
 };

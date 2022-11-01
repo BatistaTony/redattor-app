@@ -6,6 +6,27 @@ export const UsersManagementContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 33px;
+
+  .toastContainer {
+    z-index: 50;
+  }
+
+  .table-container {
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+  }
 `;
 
 export const UsersManagementHeader = styled.div`
@@ -67,6 +88,9 @@ export const UsersManagementEstatisticaCard = styled.div`
     background: rgba(70, 132, 247, 0.2);
     border-radius: 6px;
     padding: 4px;
+    width: 30px;
+    max-width: auto;
+    text-align: center;
     margin-right: 12px;
   }
 

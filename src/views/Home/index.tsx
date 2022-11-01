@@ -3,7 +3,6 @@
 import MiniDrawer from '@components/molecules/SideBar';
 import Content from '@components/molecules/Content';
 import { useEffect, useState } from 'react';
-
 import { useRouter } from 'next/router';
 
 import { pathTitles } from '@utils/paths';

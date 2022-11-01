@@ -2,7 +2,7 @@ import UserManagement from '@views/Users';
 
 const Dashboard = () => (
   <div>
-    <UserManagement />
+    <UserManagement title="Utilizadores" />
   </div>
 );
 

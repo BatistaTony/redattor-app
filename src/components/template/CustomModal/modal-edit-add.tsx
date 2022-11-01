@@ -12,7 +12,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
-import { ModalEditAndAddProductProps, User } from 'typescript/user';
+import {
+  ModalEditAndAddProductProps,
+  User,
+  UserProfile,
+  UserStatus,
+} from 'typescript/user';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { PROFILES, STATUS } from '@constants/user';
@@ -20,6 +25,7 @@ import { useDropzone } from 'react-dropzone';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { validMail } from '@utils/helpers';
 import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
+import { ToastContainer } from 'react-toast';
 import { CustomDialog, FormContainer } from './styles';
 
 interface UserExt extends User {
@@ -57,7 +63,12 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
   useEffect(() => {
     if (changeType === 'edit') {
       if (data) {
-        setUserData({ ...data, password: '' });
+        console.log(data);
+
+        setUserData({
+          ...data,
+          password: '',
+        });
       }
     }
   }, [changeType]);
@@ -120,6 +131,8 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
       msg: `Email invalido`,
     });
 
+    return true;
+
     return false;
   };
 
@@ -132,6 +145,8 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
       if (result) {
         setLoading(false);
         cancel();
+      } else {
+        setLoading(false);
       }
     }
     setLoading(false);
@@ -143,6 +158,8 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
+      <ToastContainer position="top-right" />
+
       <DialogTitle id="alert-dialog-title">
         <div className="icon-edit">
           {changeType === 'add' && <PersonAddAltOutlinedIcon />}
@@ -224,6 +241,7 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
           <TextField
             value={userData.phone}
             name="phone"
+            type="number"
             error={errorMsg.field === 'phone'}
             helperText={errorMsg.field === 'phone' && errorMsg.msg}
             className="phone-field"
@@ -266,11 +284,8 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
                 : undefined
             }
           >
-            <MenuItem value="deafult" disabled hidden>
-              status
-            </MenuItem>
             {STATUS.map((item: string) => (
-              <MenuItem key={`${item}`} value={item} disabled>
+              <MenuItem key={`${item}`} value={item}>
                 {item}
               </MenuItem>
             ))}

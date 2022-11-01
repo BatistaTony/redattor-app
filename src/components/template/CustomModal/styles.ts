@@ -146,6 +146,17 @@ export const FormContainer = styled.div`
   grid-row-gap: 29px;
   grid-column-gap: 22px;
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   .MuiFormControl-root {
     width: 100%;
     height: 41px;
