@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "fullname": "Caio jeromiao Tony",
+  "username": "caio.tony2",
+  "email": "caio.tony1@proton.me",
+  "phone": "24492279120",
+  "profileImage": null,
+  "status": "activated",
+  "sequence": 2,
+  "userRoles": "[\"LIST_USERS\", \"GET_USER\", \"CREATE_USER\", \"UPDATE_USER\"]",
+  "userType": "admin",
+  "rootAdmin": 12,
+  "hashRefreshToken": null
+}

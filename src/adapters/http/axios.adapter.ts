@@ -2,7 +2,7 @@ import originalAxios, { AxiosInstance } from 'axios';
 import { getCookies } from '@utils/cookies';
 import { RedatorHttpClient, RedatorAdapterResponse } from './http.type';
 
-const BASE_URL = process.env.NEXT_PUBLIC_UTENTE_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const AUTH_TOKEN = getCookies(['AUTH_TOKEN'])[0];
 

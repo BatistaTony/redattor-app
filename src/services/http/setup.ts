@@ -21,7 +21,7 @@ const getTokenFromCookie = async (token: string) => token;
 export const makeRequest =
   (fetcher: RedatorHttpClientMethod | RedatorHttpClientMethodWithData) =>
   async ({ endpoint, data, config }: MakeRequestPayload) => {
-    const token = getTokenFromCookie('key');
+    const token = getTokenFromCookie('AUTH_TOKEN');
     const realConfig = {
       ...config,
       ...(token && { authorization: `Bearer ${token}` }),

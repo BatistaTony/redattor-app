@@ -3,6 +3,7 @@ import { paths } from '@utils/paths';
 import DashboardDemo from '@views/DashboardDemo';
 import LayoutManagement from '@views/LayoutManagement';
 import Settings from '@views/Settings';
+import UserManagement from '@views/Users';
 
 export const SectionsContent = ({
   path,
@@ -21,7 +22,7 @@ export const SectionsContent = ({
     case paths.REPORTS:
       return <DashboardDemo title={title} />;
     case paths.USERS:
-      return <DashboardDemo title={title} />;
+      return <UserManagement title={title} />;
     case paths.SETTINGS:
       return <Settings />;
     default:
