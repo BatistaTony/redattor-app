@@ -49,6 +49,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
     validadores: 0,
     administradores: 0,
   });
+  const [loadingTableData, setLoadingTableData] = useState(false);
 
   const [showUserDialog, setShowUserDialog] = useState(false);
 
@@ -66,6 +67,8 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
   };
 
   const handleGetUsers = async () => {
+    setLoadingTableData(true);
+
     const status = UserStatusApi[filter.status as keyof typeof UserStatusApi];
     const userType =
       UserProfileApi[filter.profile as keyof typeof UserProfileApi];
@@ -101,7 +104,11 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       };
     });
 
+    console.log('result ==> ', result);
+
     setUsers(result);
+
+    setLoadingTableData(false);
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -168,9 +175,9 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
     const admins = await respAdmins.json();
 
     setUsersStatistic({
-      administradores: admins.totalItems,
-      colunistas: cols.totalItems,
-      validadores: vals.totalItems,
+      administradores: admins.totalItems || 0,
+      colunistas: cols.totalItems || 0,
+      validadores: vals.totalItems || 0,
     });
   };
 
@@ -329,6 +336,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
         />
       )}
       <UsersTable
+        loading={loadingTableData}
         users={users}
         editData={editData}
         handleChangePage={handleChangePage}
