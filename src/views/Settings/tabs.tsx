@@ -7,6 +7,7 @@ import {
 } from '@mui/icons-material';
 import { getUserInfo } from '@services/user/getUserInfo';
 import { IUser } from 'typescript/user.type';
+import { useRequestSWR } from '@adapters/http/swr.adpater';
 import { DataToShow, UpdateUserForm } from './types';
 
 import { TabsContent } from './TabSections';
@@ -22,25 +23,16 @@ function a11yProps(index: number) {
 const tabData = ['Informações pessoais', 'Segurança'];
 
 const CustomTabs: FC = () => {
-  const [userData, setUserData] = useState<IUser>();
   const [value, setValue] = useState(0);
   const { palette } = useTheme();
 
   const { colors } = palette;
 
+  const { data } = useRequestSWR<IUser>('/users/me');
+
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await getUserInfo();
-
-      setUserData(data as any);
-    })();
-  }, []);
-
-  console.log('aqui', userData);
 
   return (
     <Box
@@ -88,15 +80,12 @@ const CustomTabs: FC = () => {
         </Tabs>
 
         <Box style={{ width: '80%', margin: '40px auto 0' }}>
-          <AvatarSection
-            userHole={userData?.userType}
-            fullName={userData?.fullname}
-          />
+          <AvatarSection userHole={data?.userType} fullName={data?.fullname} />
 
           <TabsContent
             value={value}
-            inCommingData={DataToShow(userData) as any}
-            userId={userData?.id || 0}
+            inCommingData={DataToShow(data) as any}
+            userId={data?.id || 0}
           />
         </Box>
       </Box>
