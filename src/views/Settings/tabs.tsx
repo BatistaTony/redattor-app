@@ -96,6 +96,7 @@ const CustomTabs: FC = () => {
           <TabsContent
             value={value}
             inCommingData={DataToShow(userData) as any}
+            userId={userData?.id || 0}
           />
         </Box>
       </Box>

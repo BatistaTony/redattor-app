@@ -8,7 +8,7 @@ const CircleButton: FC<{ toggleDrawer: () => void; isOpen: boolean }> = ({
   <div
     style={{
       marginTop: 20,
-      zIndex: 2000,
+      zIndex: 1200,
     }}
   >
     <SideIcon

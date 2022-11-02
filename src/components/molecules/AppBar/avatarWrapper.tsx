@@ -6,8 +6,8 @@ import NotificationIcon from '@mui/icons-material/NotificationsOutlined';
 
 const AvatarWrapper = () => (
   <Stack direction="row" alignItems="center" spacing={2}>
-    <Badge badgeContent={3} color="error">
-      <NotificationIcon color="action" />
+    <Badge badgeContent={1} color="error" style={{ zIndex: '2 !important' }}>
+      <NotificationIcon sx={{ zIndex: '2 !important' }} color="action" />
     </Badge>
     <Avatar alt="Cindy Baker" src="" />
   </Stack>

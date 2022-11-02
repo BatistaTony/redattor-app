@@ -99,7 +99,7 @@ const SignInView = () => {
 
       if (resp === 'success') {
         setLoading(false);
-        router.push('/home');
+        router.push('/home/dashboard');
       } else {
         setErrorMsg({
           field: 'server',

@@ -1,17 +1,17 @@
 import { http } from '@adapters/index';
-import { UpdateUserInfoProps, UpdateUserInfoResponse } from './types';
+import { UpdateUserInfoResponse } from './types';
 
-export const updateUserInfo = async (
-  data: UpdateUserInfoProps,
-  userID: string,
-): Promise<UpdateUserInfoResponse> => {
+export const updatePassword = async (data: {
+  currentPassword: string;
+  newPassword: string;
+}): Promise<UpdateUserInfoResponse> => {
   const response: UpdateUserInfoResponse = {
     status: 0,
     isLoading: true,
   };
 
   try {
-    const res = await http.patch(`users/${userID}`, data as any);
+    const res = await http.post(`users/change-admin-password`, data as any);
 
     response.status = res.status as number;
     response.isLoading = false;

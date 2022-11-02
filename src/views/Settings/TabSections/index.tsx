@@ -7,9 +7,15 @@ import Security from './Security';
 export const TabsContent: FC<{
   value: number;
   inCommingData?: UpdateUserForm;
-}> = ({ value, inCommingData }) => (
+  userId: number;
+}> = ({ value, inCommingData, userId }) => (
   <>
-    <PersonalInfo value={value} index={0} inCommingData={inCommingData} />
+    <PersonalInfo
+      value={value}
+      index={0}
+      inCommingData={inCommingData}
+      userId={userId}
+    />
     <Security value={value} index={1} />
   </>
 );

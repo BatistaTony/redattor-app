@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 import { FC, useState, useCallback } from 'react';
 import { Button, Box } from '@mui/material';
 import TabPanel from '../utils';
@@ -8,9 +10,10 @@ const PersonalInfo: FC<{
   value: number;
   index: number;
   inCommingData?: UpdateUserForm;
-}> = ({ value, index, inCommingData }) => (
+  userId: number;
+}> = ({ value, index, inCommingData, userId }) => (
   <TabPanel value={value} index={index}>
-    <PersonalInfoForm inCommingData={inCommingData} />
+    <PersonalInfoForm inCommingData={inCommingData} userId={userId} />
   </TabPanel>
 );
 
