@@ -9,6 +9,7 @@ import IconLogout from './logout';
 import Logo, { MiniLogo } from './logo';
 import PaperAdd from './paperAdd';
 import RightArrow from './rightArrow';
+import SaveIcon from './saveIcon';
 
 export {
   IconReport,
@@ -23,4 +24,5 @@ export {
   SideIcon,
   PaperAdd,
   RightArrow,
+  SaveIcon,
 };
