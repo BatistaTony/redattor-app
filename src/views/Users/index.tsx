@@ -22,7 +22,7 @@ import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
 import { getUsers } from '@services/users/get-users';
 import { createUser } from '@services/users/create-user';
 import { updateUser } from '@services/users/update-user';
-import { toast, ToastContainer } from 'react-toast';
+import { toast } from 'react-toastify';
 import {
   UsersManagementContainer,
   UsersManagementEstatistica,
@@ -221,7 +221,6 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
 
   return (
     <UsersManagementContainer>
-      <ToastContainer position="top-right" />
       <Head>
         <title>{title}</title>
       </Head>

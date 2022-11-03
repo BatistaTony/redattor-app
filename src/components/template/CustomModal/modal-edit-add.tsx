@@ -25,7 +25,7 @@ import { useDropzone } from 'react-dropzone';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { validMail } from '@utils/helpers';
 import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
-import { ToastContainer } from 'react-toast';
+import { ToastContainer } from 'react-toastify';
 import { CustomDialog, FormContainer } from './styles';
 
 interface UserExt extends User {
@@ -158,7 +158,12 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <ToastContainer position="top-right" />
+      <ToastContainer
+        position="top-right"
+        closeOnClick
+        pauseOnFocusLoss
+        autoClose={3000}
+      />
 
       <DialogTitle id="alert-dialog-title">
         <div className="icon-edit">

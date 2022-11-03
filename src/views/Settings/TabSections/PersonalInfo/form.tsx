@@ -6,7 +6,7 @@ import { Box, Button, useTheme } from '@mui/material';
 import { holes } from '@utils/holes';
 import { updateUserInfo } from '@services/user/updateUserInfo';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { toast, ToastContainer } from 'react-toast';
+import { toast, ToastContainer } from 'react-toastify';
 import CustomField from '../customTextField';
 import { INITIAL_DATA, UpdateUserForm } from '../../types';
 import CustomAutocomplete from './customAutoComplete';
@@ -70,8 +70,8 @@ const PersonalInfoForm: FC<{
           label="Nome"
           name="firstName"
           defaultValue={inCommingData?.firstName}
-          onChange={e =>
-            setData(prev => ({ ...prev, firstName: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, firstName: e.target.value } as any))
           }
         />
         <CustomField
@@ -79,8 +79,8 @@ const PersonalInfoForm: FC<{
           style={{ width: '100%' }}
           label="Sobrenome"
           defaultValue={inCommingData?.lastName}
-          onChange={e =>
-            setData(prev => ({ ...prev, lastName: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, lastName: e.target.value } as any))
           }
         />
 
@@ -89,8 +89,8 @@ const PersonalInfoForm: FC<{
           style={{ width: '100%' }}
           label="Email"
           defaultValue={inCommingData?.email}
-          onChange={e =>
-            setData(prev => ({ ...prev, email: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, email: e.target.value } as any))
           }
         />
         <CustomField
@@ -98,8 +98,8 @@ const PersonalInfoForm: FC<{
           style={{ width: '100%' }}
           label="Telefone"
           defaultValue={inCommingData?.phone}
-          onChange={e =>
-            setData(prev => ({ ...prev, phone: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, phone: e.target.value } as any))
           }
         />
 
@@ -108,8 +108,8 @@ const PersonalInfoForm: FC<{
           isLoading={!inCommingData?.profile}
           label="Perfil"
           value={holes[inCommingData?.profile as unknown as any]}
-          onChange={e =>
-            setData(prev => ({ ...prev, profile: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, profile: e.target.value } as any))
           }
         />
         <CustomField
@@ -120,8 +120,8 @@ const PersonalInfoForm: FC<{
           defaultValue={
             inCommingData?.status === 'activated' ? 'Activo' : 'Desativado'
           }
-          onChange={e =>
-            setData(prev => ({ ...prev, status: e.target.value } as any))
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, status: e.target.value } as any))
           }
         />
 
