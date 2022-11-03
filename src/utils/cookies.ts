@@ -1,4 +1,4 @@
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
 export const setCookies = (key: string, value: string) => {
   setCookie(null, key, value, {
@@ -15,5 +15,35 @@ export const getCookies = (values: string[]) =>
   });
 
 export const removeCookie = (key: string) => {
-  setCookie(null, key, '');
+  destroyCookie(null, key);
+};
+
+function setCookiesFunction(
+  key: string,
+  value: string,
+  expireDays: any,
+  expireHours: any,
+  expireMinutes: any,
+  expireSeconds: any,
+) {
+  const expireDate = new Date();
+  if (expireDays) {
+    expireDate.setDate(expireDate.getDate() + expireDays);
+  }
+  if (expireHours) {
+    expireDate.setHours(expireDate.getHours() + expireHours);
+  }
+  if (expireMinutes) {
+    expireDate.setMinutes(expireDate.getMinutes() + expireMinutes);
+  }
+  if (expireSeconds) {
+    expireDate.setSeconds(expireDate.getSeconds() + expireSeconds);
+  }
+  document.cookie =
+    `${key}=${escape(value)};domain=${window.location.hostname};path=/` +
+    `;expires=${expireDate.toUTCString()}`;
+}
+
+export const deleteCookie = (name: string) => {
+  setCookiesFunction(name, '', null, null, null, 1);
 };

@@ -1,14 +1,13 @@
-import { FC, useState, SyntheticEvent, useEffect } from 'react';
+import { FC, useState, SyntheticEvent } from 'react';
 import { Box, Tab, Tabs, useTheme } from '@mui/material';
 
 import {
   AdminPanelSettingsOutlined,
   AccountCircleOutlined,
 } from '@mui/icons-material';
-import { getUserInfo } from '@services/user/getUserInfo';
 import { IUser } from 'typescript/user.type';
 import { useRequestSWR } from '@adapters/http/swr.adpater';
-import { DataToShow, UpdateUserForm } from './types';
+import { DataToShow } from './types';
 
 import { TabsContent } from './TabSections';
 import AvatarSection from './AvatarSection';

@@ -9,8 +9,8 @@ export const signIn = async (data: SignInDataType): Promise<string> => {
       password: data.password,
     });
 
-    if (result.status) {
-      const resultData = result.data as unknown as any;
+    if (result?.status) {
+      const resultData = result?.data as unknown as any;
 
       setCookies('AUTH_TOKEN', resultData.access_token);
       setCookies('REFRESH_TOKEN', resultData.refresh_token);
@@ -22,10 +22,10 @@ export const signIn = async (data: SignInDataType): Promise<string> => {
   } catch (error: unknown) {
     const errorResponse = (error as unknown as any).response;
 
-    if (errorResponse.status === 403) {
+    if (errorResponse?.status === 403) {
       return 'Utilizador ou senha incorretos, verifique as credencias';
     }
-    if (errorResponse.status === 400) {
+    if (errorResponse?.status === 400) {
       return 'Formato do nome do utilizador invalido [ nome.nome+(numero) ]';
     }
     return 'Ocorreu algum erro, tente novamente';
