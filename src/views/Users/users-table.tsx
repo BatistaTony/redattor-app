@@ -38,10 +38,11 @@ interface UsersTableProps {
   handleChangePage: (event: unknown, newPage: number) => void;
   handleOnSaveUser: (data: User) => Promise<boolean>;
   setEditData: (data: User | null) => void;
+  loading: boolean;
 }
 
 const UsersTable: FC<UsersTableProps> = ({
-  users = [],
+  users,
   editData,
   page,
   rowsPerPage,
@@ -49,6 +50,7 @@ const UsersTable: FC<UsersTableProps> = ({
   handleChangePage,
   handleOnSaveUser,
   setEditData,
+  loading,
 }) => (
   <TablePaper>
     <TableContainer
@@ -71,7 +73,7 @@ const UsersTable: FC<UsersTableProps> = ({
             <TableCell>Ações</TableCell>
           </TableRow>
         </TableHead>
-        {users.length !== 0 ? (
+        {!loading && users.length > 0 ? (
           <TableBody>
             {users?.map((row: User) => (
               <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
@@ -119,7 +121,9 @@ const UsersTable: FC<UsersTableProps> = ({
               fontSize: '20px',
             }}
           >
-            Utilizadores não encontrados
+            {!loading && users.length === 0
+              ? 'Utilizadores não encontrados'
+              : 'loading...'}
           </Typography>
         )}
       </Table>

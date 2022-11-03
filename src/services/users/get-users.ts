@@ -20,11 +20,9 @@ export const getUsers = async ({
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/users?limit=10${
       page ? `&page=${page + 1}` : ''
-    }
-    ${userType ? `&userType=${userType}` : ''}
-        ${status ? `&status=${status}` : ''}
-
-    ${name ? `&name=${name}` : ''}
+    }${userType ? `&userType=${userType}` : ''}${
+      status ? `&status=${status}` : ''
+    }${name ? `&name=${name}` : ''}
     `,
     {
       headers: {
