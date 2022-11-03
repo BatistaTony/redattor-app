@@ -1,7 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import React, { FC, useState } from 'react';
 import Head from 'next/head';
 import DahsboardCardWelcome from '@components/molecules/DashboardCardWelcome';
-import CardEstatistic from '@components/Atoms/CardEstatistic';
 import { Typography } from '@mui/material';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import ContentPasteGoRoundedIcon from '@mui/icons-material/ContentPasteGoRounded';
@@ -11,6 +11,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CustomChartBar from '@components/molecules/CustomChartBar';
 import ColumnChart from '@components/molecules/ColumnChart';
 import { CHART_OPTIONS } from '@constants/chart';
+import CardEstatistic from '@components/atoms/CardEstatistic';
 import { DashboardContainer, CardEstatisctIcon } from './styles';
 import { data } from './example-data';
 
