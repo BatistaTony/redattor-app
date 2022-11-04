@@ -45,5 +45,5 @@ function setCookiesFunction(
 }
 
 export const deleteCookie = (name: string) => {
-  setCookiesFunction(name, '', null, null, null, 1);
+  setCookiesFunction(name, '', null, null, null, 0.1);
 };

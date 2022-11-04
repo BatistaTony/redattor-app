@@ -4,13 +4,12 @@ import {
   TextFieldProps,
   useTheme,
   Autocomplete,
-  AutocompleteProps,
   Skeleton,
 } from '@mui/material';
 
 const CustomAutocomplete: FC<
   TextFieldProps & { options: any; isLoading: boolean }
-> = ({ options, isLoading, value, ...props }) => {
+> = ({ options, isLoading, disabled, value, ...props }) => {
   const { palette } = useTheme();
 
   const { colors } = palette;
@@ -23,6 +22,7 @@ const CustomAutocomplete: FC<
     <Autocomplete
       disablePortal
       id="combo-box-demo"
+      disabled={disabled}
       value={value}
       options={options}
       sx={{ width: '100%' }}

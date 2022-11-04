@@ -4,11 +4,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useTheme } from '@mui/material';
 import { logout } from '@services/auth/logout';
-import { destroyCookie } from 'nookies';
-import { deleteCookie, removeCookie } from '@utils/cookies';
+import { deleteCookie } from '@utils/cookies';
 import Logo from './components/logoWrapper';
 import { appBarData, Drawer } from './utils';
 import CircleButton from './components/makeManuLargeButtton';
@@ -51,7 +50,7 @@ export default function SideBar() {
         deleteCookie('AUTH_TOKEN');
         deleteCookie('REFRESH_TOKEN');
 
-        router.push('/sign-in');
+        Router.push('/sign-in');
         setLogouting(false);
       }
 
