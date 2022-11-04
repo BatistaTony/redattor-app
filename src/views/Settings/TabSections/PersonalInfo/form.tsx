@@ -46,7 +46,6 @@ const PersonalInfoForm: FC<{
         'Ocorreu algum erro, verifique o formulario e tente novamente',
       );
     }
-
     setIsLoading(false);
   };
 

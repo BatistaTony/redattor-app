@@ -2,6 +2,7 @@ import TitleSection from '@components/molecules/TitleSection';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { PaperAdd } from 'assets/icons';
+import Head from 'next/head';
 import ListOfLayouts from './listOfLayouts';
 import fakeData from './fakeData';
 
@@ -13,6 +14,9 @@ const LayoutManagement: FC = () => {
 
   return (
     <Box>
+      <Head>
+        <title>Layouts de Páginas | E-Redator</title>
+      </Head>
       <Box
         style={{
           display: 'flex',

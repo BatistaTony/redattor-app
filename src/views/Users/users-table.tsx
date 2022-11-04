@@ -73,7 +73,7 @@ const UsersTable: FC<UsersTableProps> = ({
             <TableCell>Ações</TableCell>
           </TableRow>
         </TableHead>
-        {!loading && users.length > 0 ? (
+        {!loading && users?.length > 0 ? (
           <TableBody>
             {users?.map((row: User) => (
               <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
@@ -121,7 +121,7 @@ const UsersTable: FC<UsersTableProps> = ({
               fontSize: '20px',
             }}
           >
-            {!loading && users.length === 0
+            {!loading && users?.length === 0
               ? 'Utilizadores não encontrados'
               : 'loading...'}
           </Typography>
