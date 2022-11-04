@@ -31,4 +31,4 @@ import { CardEstatisticContainer } from './styles';
 );
 
 
-export default CardEstatisticDashboard
+export default CardEstatisticDashboard;
