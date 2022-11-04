@@ -10,7 +10,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CustomChartBar from '@components/molecules/CustomChartBar';
 import ColumnChart from '@components/molecules/ColumnChart';
 import { CHART_OPTIONS } from '@constants/chart';
-import { CardEstatistic } from '../../components/Atoms/CardEstatistic/CardEstatistic';
+import { CardEstatistic } from './CardEstatisticDashboard/CardEstatisticDashboard';
 import { DashboardContainer, CardEstatisctIcon } from './styles';
 import { data } from './example-data';
 
