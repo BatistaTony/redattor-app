@@ -10,9 +10,9 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CustomChartBar from '@components/molecules/CustomChartBar';
 import ColumnChart from '@components/molecules/ColumnChart';
 import { CHART_OPTIONS } from '@constants/chart';
-import { CardEstatistic } from './CardEstatisticDashboard/CardEstatisticDashboard';
 import { DashboardContainer, CardEstatisctIcon } from './styles';
 import { data } from './example-data';
+import CardEstatisticDashboard from './CardEstatisticDashboard/CardEstatisticDashboard';
 
 const Dashboard: FC<{ title: string }> = ({ title }) => {
   const [chartColumnOption, setChartColumnOption] =
@@ -30,11 +30,11 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
         </div>
 
         <div className="wlc-cards-statcs">
-          <CardEstatistic
+          <CardEstatisticDashboard
             data={<Typography variant="h1">1050</Typography>}
             text="Média de palavras escritas por dia"
           />
-          <CardEstatistic
+          <CardEstatisticDashboard
             data={<Typography variant="h1">1050</Typography>}
             text="Média de palavras escritas por projeto"
           />
@@ -42,7 +42,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
       </div>
 
       <div className="cards-container">
-        <CardEstatistic
+        <CardEstatisticDashboard
           data={
             <CardEstatisctIcon bg="#E7E7FE">
               <div className="div-bg" style={{ opacity: 1 }} />
@@ -52,7 +52,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
           title="5"
           legend="Projetos criados"
         />
-        <CardEstatistic
+        <CardEstatisticDashboard
           data={
             <CardEstatisctIcon bg="#ED9E5A">
               <div className="div-bg" />
@@ -62,7 +62,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
           title="5"
           legend="Projetos em progresso"
         />
-        <CardEstatistic
+        <CardEstatisticDashboard
           data={
             <CardEstatisctIcon bg="#63CDA8">
               <div className="div-bg" />
@@ -72,7 +72,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
           title="5 hrs"
           legend="Projetos concluidos"
         />
-        <CardEstatistic
+        <CardEstatisticDashboard
           data={
             <CardEstatisctIcon bg="#FEC000">
               <div className="div-bg" />
@@ -95,7 +95,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
         </div>
 
         <div className="card-statcs">
-          <CardEstatistic
+          <CardEstatisticDashboard
             data={
               <CardEstatisctIcon bg="#4684F7">
                 <div className="div-bg" />
@@ -107,19 +107,19 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
           />
 
           <div className="ctr-card">
-            <CardEstatistic
+            <CardEstatisticDashboard
               data={<Typography variant="h1">50</Typography>}
               text="Administradores"
             />
           </div>
           <div className="ctr-card">
-            <CardEstatistic
+            <CardEstatisticDashboard
               data={<Typography variant="h1">50</Typography>}
               text="Validadores"
             />
           </div>
           <div className="ctr-card">
-            <CardEstatistic
+            <CardEstatisticDashboard
               data={<Typography variant="h1">50</Typography>}
               text="Colunistas"
             />
