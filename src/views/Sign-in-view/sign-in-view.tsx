@@ -181,6 +181,7 @@ const SignInView = () => {
           disabled={checkFields()}
           variant="contained"
           onClick={submitForm}
+          type="submit"
           loading={loading}
         >
           Entrar

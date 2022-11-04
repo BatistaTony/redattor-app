@@ -11,7 +11,7 @@ export const SignInContainer = styled.div`
   background-color: #ffffff;
 `;
 
-export const SignInFormContainer = styled.div`
+export const SignInFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

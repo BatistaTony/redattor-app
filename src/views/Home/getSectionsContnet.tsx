@@ -4,6 +4,7 @@ import LayoutManagement from '@views/LayoutManagement';
 import Settings from '@views/Settings';
 import UserManagement from '@views/Users';
 import Dashboard from '@views/Dashboard';
+import ActivitiesLogs from '@views/ActivitiesLogs';
 
 export const SectionsContent = ({
   path,
@@ -16,10 +17,9 @@ export const SectionsContent = ({
     case paths.DASHBOARD:
       return <Dashboard title={title} />;
     case paths.CHANGE_RECORD:
-      return <Dashboard title={title} />;
+      return <ActivitiesLogs title={title} />;
     case paths.LAYOUT:
       return <LayoutManagement />;
-      return <Dashboard title={title} />;
     case paths.REPORTS:
       return <Dashboard title={title} />;
     case paths.USERS:
