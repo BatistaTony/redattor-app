@@ -54,7 +54,6 @@ const Home = () => {
         padding: 0,
         background: colors.light4,
         overflowY: 'auto',
-        paddingBottom: '60px',
       }}
     >
       <MiniDrawer />

@@ -22,7 +22,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
   return (
     <DashboardContainer>
       <Head>
-        <title>{title}</title>
+        <title>{title} | E-Redator</title>
       </Head>
 
       <div className="dash-b">

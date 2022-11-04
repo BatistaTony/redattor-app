@@ -99,9 +99,13 @@ const SecurityForm: FC = () => {
           label="Senha antiga"
           type="password"
           defaultValue={data.currentPassword}
-          onChange={e =>
-            setData(prev => ({ ...prev, currentPassword: e.target.value }))
-          }
+          onChange={e => {
+            setData(prev => ({ ...prev, currentPassword: e.target.value }));
+            setValidators(prev => ({
+              ...prev,
+              currentMustBeGreaterThan8: false,
+            }));
+          }}
           error={validators.currentMustBeGreaterThan8}
           helperText={currentErrorText}
         />
@@ -112,9 +116,14 @@ const SecurityForm: FC = () => {
             style={{ width: 'calc(50% - 15px)', marginRight: '30px' }}
             label="Nova senha"
             type="password"
-            onChange={e =>
-              setData(prev => ({ ...prev, newPassword: e.target.value }))
-            }
+            onChange={e => {
+              setData(prev => ({ ...prev, newPassword: e.target.value }));
+              setValidators(prev => ({
+                ...prev,
+                newMustBeGreaterThan8: false,
+                mustBeEquals: false,
+              }));
+            }}
             error={validators.newMustBeGreaterThan8 || validators.mustBeEquals}
             helperText={newPassErrorText}
           />
@@ -123,9 +132,14 @@ const SecurityForm: FC = () => {
             style={{ width: 'calc(50% - 15px)' }}
             label="Confirmar senha"
             type="password"
-            onChange={e =>
-              setData(prev => ({ ...prev, confirmPassword: e.target.value }))
-            }
+            onChange={e => {
+              setData(prev => ({ ...prev, confirmPassword: e.target.value }));
+              setValidators(prev => ({
+                ...prev,
+                newMustBeGreaterThan8: false,
+                mustBeEquals: false,
+              }));
+            }}
             error={validators.newMustBeGreaterThan8 || validators.mustBeEquals}
             helperText={newPassErrorText}
           />

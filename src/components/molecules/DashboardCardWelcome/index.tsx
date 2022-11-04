@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Typography, Button } from '@mui/material';
 import { BlogginPanaIllustration } from 'assets/illustration';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import { useRequestSWR } from '@adapters/http/swr.adpater';
+import { IUser } from 'typescript/user.type';
 import { DahsboardCardWelcomeContainer } from './styles';
 
 const DahsboardCardWelcome = () => {
   const [file, setFile] = useState('');
-
+  const { data } = useRequestSWR<IUser>('/users/me');
   return (
     <DahsboardCardWelcomeContainer>
       <div className="card-bg" />
@@ -22,7 +24,7 @@ const DahsboardCardWelcome = () => {
             }}
           >
             Bem vindo,{' '}
-            <span style={{ fontWeight: '700' }}>Batista Oliveira !</span>
+            <span style={{ fontWeight: '700' }}>{data?.fullname}!</span>
           </Typography>
           <Button sx={{ textTransform: 'none' }} className="btn-card-ctr">
             <SaveAltIcon /> Exportar dados Dash

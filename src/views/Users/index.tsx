@@ -229,7 +229,7 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
   return (
     <UsersManagementContainer>
       <Head>
-        <title>{title}</title>
+        <title>{title} | E-Redator</title>
       </Head>
       <UsersManagementHeader>
         <UsersManagementHeaderTitle>
