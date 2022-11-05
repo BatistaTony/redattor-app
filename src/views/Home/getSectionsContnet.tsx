@@ -21,7 +21,7 @@ export const SectionsContent = ({
     case paths.LAYOUT:
       return <LayoutManagement />;
     case paths.REPORTS:
-      return <Dashboard title={title} />;
+      return <div />;
     case paths.USERS:
       return <UserManagement title={title} />;
     case paths.SETTINGS:
