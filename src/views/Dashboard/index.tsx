@@ -31,7 +31,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
 
         <div className="wlc-cards-statcs">
           <CardEstatisticDashboard
-            data={<Typography variant="h1">1050</Typography>}
+            data={<Typography variant="h1">150</Typography>}
             text="Média de palavras escritas por dia"
           />
           <CardEstatisticDashboard
