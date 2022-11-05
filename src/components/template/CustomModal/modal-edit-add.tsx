@@ -63,8 +63,6 @@ const ModalEditAndAddUser: React.FC<ModalEditAndAddProductProps> = ({
   useEffect(() => {
     if (changeType === 'edit') {
       if (data) {
-        console.log(data);
-
         setUserData({
           ...data,
           password: '',

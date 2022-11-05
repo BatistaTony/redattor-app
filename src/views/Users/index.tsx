@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-param-reassign */
 import { Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
@@ -104,8 +106,6 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       };
     });
 
-    console.log('result ==> ', result);
-
     setUsers(result);
 
     setLoadingTableData(false);
@@ -181,6 +181,10 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
     });
   };
 
+  function deleteProp(x: any) {
+    delete x.password;
+  }
+
   const handleOnSaveUserEditedUser = async (data: User) => {
     const objFormat = {
       id: data.id,
@@ -189,7 +193,12 @@ const UserManagement: FC<{ title: string }> = ({ title }) => {
       password: data.password as string,
       phone: data.phone,
       userType: UserProfileApi[data.profile as keyof typeof UserProfileApi],
+      status: UserStatusApi[data.status as keyof typeof UserStatusApi],
     };
+
+    if (objFormat.password === '') {
+      deleteProp(objFormat);
+    }
 
     const response = await updateUser(objFormat);
 

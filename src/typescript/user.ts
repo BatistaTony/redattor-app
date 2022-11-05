@@ -36,12 +36,12 @@ export interface ModalEditAndAddProductProps {
 
 export enum UserStatus {
   'activated' = 'Activo',
-  'deactived' = 'inactivo',
+  'unactived' = 'Inactivo',
 }
 
 export enum UserStatusApi {
   'Activo' = 'activated',
-  'inactivo' = 'deactived',
+  'Inactivo' = 'unactived',
 }
 
 export enum UserProfile {
