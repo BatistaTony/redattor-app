@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { CardEstatisticType } from './type';
 import { CardEstatisticContainer } from './styles';
 
- const CardEstatisticDashboard: FC<CardEstatisticType> = ({
+const CardEstatisticDashboard: FC<CardEstatisticType> = ({
   data,
   legend,
   text,
@@ -29,6 +29,5 @@ import { CardEstatisticContainer } from './styles';
     </div>
   </CardEstatisticContainer>
 );
-
 
 export default CardEstatisticDashboard;
