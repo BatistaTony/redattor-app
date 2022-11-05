@@ -18,7 +18,7 @@ import {
   UserType,
 } from 'typescript/user';
 import { STATUS, PROFILES } from '@constants/user';
-import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
+import CustomPlaceholder from '@views/Users/CustomPlaceholder';
 import { getUsers } from '@services/users/get-users';
 import { createUser } from '@services/users/create-user';
 import { updateUser } from '@services/users/update-user';

@@ -24,7 +24,7 @@ import { PROFILES, STATUS } from '@constants/user';
 import { useDropzone } from 'react-dropzone';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { validMail } from '@utils/helpers';
-import CustomPlaceholder from '@components/atoms/CustomPlaceholder';
+import CustomPlaceholder from '@views/Users/CustomPlaceholder';
 import { ToastContainer } from 'react-toastify';
 import { CustomDialog, FormContainer } from './styles';
 

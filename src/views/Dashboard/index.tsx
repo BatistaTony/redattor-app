@@ -49,7 +49,7 @@ const Dashboard: FC<{ title: string }> = ({ title }) => {
               <ContentPasteRoundedIcon sx={{ color: '#6A6CF6' }} />
             </CardEstatisctIcon>
           }
-          title="5"
+          title="500"
           legend="Projetos criados"
         />
         <CardEstatisticDashboard
